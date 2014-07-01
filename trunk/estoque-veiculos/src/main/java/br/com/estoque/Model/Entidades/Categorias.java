@@ -32,6 +32,7 @@ public class Categorias implements Serializable {
     private Integer catCodigo;
     @Column(name = "cat_nome",nullable = false,length = 40)
     private String catNome;
+    
     @OneToMany(mappedBy = "proCatCodigo",fetch = FetchType.LAZY)
     @ForeignKey(name="CategoriaProduto")
     private List<Produtos> produtos;
