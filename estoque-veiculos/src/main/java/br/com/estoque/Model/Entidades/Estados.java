@@ -29,6 +29,7 @@ private static final long serialVersionUID = 1L;
     private char est_sigla;
     @Column(name="est_nome",nullable = false,length = 40)
     private String est_nome;
+    
     @OneToMany(mappedBy = "estados",fetch = FetchType.LAZY)
     @ForeignKey(name="CidadeEstado")
     private List<Cidades> cidades;
