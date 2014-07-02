@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.estoque.model.Entidades;
+package br.com.estoque.Model.Entidades;
 
 import java.io.Serializable;
 import java.util.List;
