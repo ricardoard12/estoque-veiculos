@@ -3,15 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.estoque.model.Entidades;
+package br.com.estoque.Model.Entidades;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.ForeignKey;
 
@@ -41,7 +44,11 @@ public class Clientes implements Serializable {
     private String cli_endereco;
     @Column(name = "cli_senha", nullable = true, length = 11)
     private char cli_telefone;
-
+    
+    @OneToMany(mappedBy = "ven_codigo",fetch = FetchType.LAZY)
+    @ForeignKey(name="vendasCliente")
+    private List<Clientes> clientes;
+    
     @ManyToOne(optional = false)
     @ForeignKey(name = "CidadeEstado")
     @JoinColumn(name = "cli_cid_codigo", referencedColumnName = "cid_codigo")
@@ -106,6 +113,22 @@ public class Clientes implements Serializable {
         this.cli_telefone = cli_telefone;
     }
 
+    public List<Clientes> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(List<Clientes> clientes) {
+        this.clientes = clientes;
+    }
+
+    public Cidades getCidades() {
+        return cidades;
+    }
+
+    public void setCidades(Cidades cidades) {
+        this.cidades = cidades;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;
