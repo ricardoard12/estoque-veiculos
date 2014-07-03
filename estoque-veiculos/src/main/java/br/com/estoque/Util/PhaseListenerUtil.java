@@ -5,7 +5,7 @@ import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
 import org.hibernate.Session;
 
-public class PhaseListenerSemeru implements PhaseListener {
+public class PhaseListenerUtil implements PhaseListener {
 
     //Antes da Fase
     @Override
