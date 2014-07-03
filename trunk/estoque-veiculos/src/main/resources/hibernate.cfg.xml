@@ -7,5 +7,17 @@
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/estoque-veiculos</property>
     <property name="hibernate.connection.username">postgres</property>
     <property name="hibernate.connection.password">ADS8</property>
+    
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.format_sql">true</property>
+    <property name="hibernate.order_updates">true</property>
+    
+    <mapping class="br.com.estoque.Model.Entidades.Categorias"/>
+    <mapping class="br.com.estoque.Model.Entidades.Estados"/>
+    <mapping class="br.com.estoque.Model.Entidades.Cidades"/>
+    <mapping class="br.com.estoque.Model.Entidades.Fornecedores"/>
+    <mapping class="br.com.estoque.Model.Entidades.Produtos"/>
+    <mapping class="br.com.estoque.Model.Entidades.Vendas"/>
+    <mapping class="br.com.estoque.Model.Entidades.ItensVenda"/>
   </session-factory>
 </hibernate-configuration>
