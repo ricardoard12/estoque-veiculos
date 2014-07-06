@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../resources/restrict/main.xhtml">
+
+            <ui:define name="conteudo">
+                <p:fieldset legend="Cadastrar Categorias">
+                    <br/>
+                    <p:tabView dynamic="true" id="tbv1">
+                        <p:tab title="Categoria">
+                            <h:form prependId="false" id="formCategoria">
+                                <p:growl id="msg0"/>
+                                <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid0">
+                                    <h:outputLabel>Código.:</h:outputLabel>
+                                    <h:inputText readonly="true" id="catCodigo" value="#{mbCategorias.categoria.catCodigo}"/> 
+                                   <h:outputLabel>Nome.:</h:outputLabel>
+                                   <h:inputText id="catNome" value="#{mbCategorias.categoria.catNome}" required="true"
+                                                requiredMessage="O Campo não pode ser vazio!"/> 
+                                   <p:panel>
+                                       <p:commandButton value="Salvar" action="#{mbCategorias.addCategoria}" 
+                                                        image="ui-icons ui-icon-disk" update="@form"/>
+                                       <p:commandButton value="Cancelar" actionListener="#{mbCategorias.limpaCategoria}" 
+                                                        image="ui-icons ui-icon-disk" update="@form"/>
+                                   </p:panel>
+                                </h:panelGrid>
+                            </h:form>
+                        </p:tab>
+                    </p:tabView>
+                    
+                </p:fieldset>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
