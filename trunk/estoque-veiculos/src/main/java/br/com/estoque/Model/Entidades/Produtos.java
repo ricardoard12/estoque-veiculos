@@ -34,19 +34,19 @@ public class Produtos implements Serializable {
     private Integer proCodigo;
     @Column(name = "pro_nome", nullable = false, length = 45)
     private String proNome;
-    @Column(name = "pro_descricao",nullable = true,length = 100)
+    @Column(name = "pro_descricao", nullable = true, length = 100)
     private String proDescricao;
-    @Column(name = "pro_marca",nullable = false,length = 45)
+    @Column(name = "pro_marca", nullable = false, length = 45)
     private String proMarca;
-    @Column(name = "pro_img",nullable = true,length = 100)
+    @Column(name = "pro_img", nullable = true, length = 100)
     private String proImg;
-    @Column(name = "pro_qtd",nullable = false,length = 4)
+    @Column(name = "pro_qtd", nullable = false, length = 4)
     private int proQtd;
-    @Column(name = "pro_valor_compra",nullable = false)
+    @Column(name = "pro_valor_compra", nullable = false)
     private double proValorCompra;
-    @Column(name = "pro_valor_venda",nullable = false)
+    @Column(name = "pro_valor_venda", nullable = false)
     private double proValorVenda;
-    @Column(name = "pro_observacao",nullable = true,length = 60)
+    @Column(name = "pro_observacao", nullable = true, length = 60)
     private String proObservacao;
 
     @OneToMany(mappedBy = "pro_codigo", fetch = FetchType.LAZY)
@@ -62,10 +62,12 @@ public class Produtos implements Serializable {
     @ForeignKey(name = "CategoriaProduto")
     @JoinColumn(name = "pro_cat_codigo", referencedColumnName = "cat_codigo")
     private Categorias categorias;
- 
+
     public Produtos() {
+        this.fornecedores = new Fornecedores();
+        this.categorias = new Categorias();
     }
-    
+
     public Integer getProCodigo() {
         return proCodigo;
     }
@@ -161,7 +163,7 @@ public class Produtos implements Serializable {
     public void setCategorias(Categorias categorias) {
         this.categorias = categorias;
     }
-        
+
     @Override
     public int hashCode() {
         int hash = 7;

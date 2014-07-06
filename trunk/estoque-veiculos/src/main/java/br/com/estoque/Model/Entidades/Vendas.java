@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.estoque.Model.Entidades;
 
 import java.io.Serializable;
@@ -25,8 +24,9 @@ import org.hibernate.annotations.ForeignKey;
 @Entity
 @Table(name = "vendas")
 public class Vendas implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue
     @Column(name = "ven_cod", nullable = false)
@@ -35,17 +35,18 @@ public class Vendas implements Serializable {
     private double venValTot;
     @Column(name = "ven_data")
     private String venData;
-    
+
     @OneToMany(mappedBy = "ven_cod")
     @ForeignKey(name = "VendasItensVenda")
-    private List<ItensVenda> itensVenda;   
-    
+    private List<ItensVenda> itensVenda;
+
     @ManyToOne(optional = false)
-    @ForeignKey(name="vendasCliente")
+    @ForeignKey(name = "vendasCliente")
     @JoinColumn(name = "ven_cli_email", referencedColumnName = "cli_email")
-    private Clientes venCliEmail;
+    private Clientes clientes;
 
     public Vendas() {
+        this.clientes = new Clientes();
     }
 
     public Integer getVenCod() {
@@ -80,12 +81,12 @@ public class Vendas implements Serializable {
         this.itensVenda = itensVenda;
     }
 
-    public Clientes getVenCliEmail() {
-        return venCliEmail;
+    public Clientes clientes() {
+        return clientes;
     }
 
-    public void setVenCliEmail(Clientes venCliEmail) {
-        this.venCliEmail = venCliEmail;
+    public void setClientes(Clientes clientes) {
+        this.clientes = clientes;
     }
 
     @Override
@@ -109,5 +110,5 @@ public class Vendas implements Serializable {
         }
         return true;
     }
-    
+
 }

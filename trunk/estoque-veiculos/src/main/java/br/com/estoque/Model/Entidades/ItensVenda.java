@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.estoque.Model.Entidades;
 
 import java.io.Serializable;
@@ -23,26 +22,29 @@ import org.hibernate.annotations.ForeignKey;
 @Entity
 @Table(name = "itens_venda")
 public class ItensVenda implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue
-    @Column(name = "itv_codigo",nullable = false)
+    @Column(name = "itv_codigo", nullable = false)
     private Integer itvCodigo;
-    @Column(name = "itv_quantidade",nullable = false,length = 4)
+    @Column(name = "itv_quantidade", nullable = false, length = 4)
     private int itvQuantidade;
-    
+
     @ManyToOne(optional = false)
     @ForeignKey(name = "ProdutoItensVenda")
-    @JoinColumn(name = "itv_pro_codigo", referencedColumnName = "pro_codigo")    
-    private Produtos itvProCodigo;
-    
+    @JoinColumn(name = "itv_pro_codigo", referencedColumnName = "pro_codigo")
+    private Produtos produtos;
+
     @ManyToOne(optional = false)
     @ForeignKey(name = "VendasItensVenda")
     @JoinColumn(name = "itv_ven_codigo", referencedColumnName = "ven_cod")
-    private Vendas itvVenCodigo;
+    private Vendas vendas;
 
     public ItensVenda() {
+        this.vendas = new Vendas();
+        this.produtos = new Produtos();
     }
 
     public Integer getItvCodigo() {
@@ -61,20 +63,20 @@ public class ItensVenda implements Serializable {
         this.itvQuantidade = itvQuantidade;
     }
 
-    public Produtos getItvProCodigo() {
-        return itvProCodigo;
+    public Produtos getProdutos() {
+        return produtos;
     }
 
-    public void setItvProCodigo(Produtos itvProCodigo) {
-        this.itvProCodigo = itvProCodigo;
+    public void setProdutos(Produtos produtos) {
+        this.produtos = produtos;
     }
 
-    public Vendas getItvVenCodigo() {
-        return itvVenCodigo;
+    public Vendas getVendas() {
+        return vendas;
     }
 
-    public void setItvVenCodigo(Vendas itvVenCodigo) {
-        this.itvVenCodigo = itvVenCodigo;
+    public void setVendas(Vendas vendas) {
+        this.vendas = vendas;
     }
 
     @Override
@@ -98,5 +100,5 @@ public class ItensVenda implements Serializable {
         }
         return true;
     }
-    
+
 }
