@@ -45,7 +45,7 @@ public class Cidades implements Serializable {
 
     @ManyToOne(optional = false)
     @ForeignKey(name = "CidadeEstado")
-    @JoinColumn(name = "cid_est_codigo", referencedColumnName = "est_codigo")
+    @JoinColumn(name = "cid_est_sigla", referencedColumnName = "est_sigla")
     private Estados estados;
 
     public Cidades() {

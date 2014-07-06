@@ -5,13 +5,13 @@
               version="2.0">
 
     <lifecycle>
-        <phase-listener>br.com.estoque.Util.PhaseListenerSemeru</phase-listener>
+        <phase-listener>br.com.estoque.Util.PhaseListenerUtil</phase-listener>
     </lifecycle>
     
-    <factory>
+  <!--  <factory>
 	  <exception-handler-factory>
 	     br.com.estoque.Excecoes.CustomExceptionHandlerFactory
 	  </exception-handler-factory>
 	</factory>
-
+-->
 </faces-config>

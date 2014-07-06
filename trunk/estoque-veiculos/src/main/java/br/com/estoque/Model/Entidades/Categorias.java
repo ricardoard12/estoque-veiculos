@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.estoque.Model.Entidades;
 
 import java.io.Serializable;
@@ -24,17 +23,18 @@ import org.hibernate.annotations.ForeignKey;
 @Entity
 @Table(name = "categorias")
 public class Categorias implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue
-    @Column(name = "cat_codigo",nullable = false)
+    @Column(name = "cat_codigo", nullable = false)
     private Integer catCodigo;
-    @Column(name = "cat_nome",nullable = false,length = 40)
+    @Column(name = "cat_nome", nullable = false, length = 40)
     private String catNome;
-    
+
     @OneToMany(mappedBy = "categorias", fetch = FetchType.LAZY)
-    @ForeignKey(name="CategoriaProduto")
+    @ForeignKey(name = "CategoriaProduto")
     private List<Produtos> produtos;
 
     public Categorias() {
@@ -86,5 +86,4 @@ public class Categorias implements Serializable {
         return true;
     }
 
-    
 }

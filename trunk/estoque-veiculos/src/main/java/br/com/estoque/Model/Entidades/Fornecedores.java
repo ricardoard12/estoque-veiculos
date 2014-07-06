@@ -50,10 +50,10 @@ public class Fornecedores implements Serializable {
     @OneToMany(mappedBy = "fornecedores", fetch = FetchType.LAZY)
     @ForeignKey(name = "FornecedorProduto")
     private List<Fornecedores> fornecedores;
-    
+
     @ManyToOne(optional = false)
-    @ForeignKey(name = "CidadeFornecedor")
-    @JoinColumn(name = "for_cod_cidade", referencedColumnName = "cod_cidade")
+    @ForeignKey(name = "CidadesFornecedor")
+    @JoinColumn(name = "for_cid_codigo", referencedColumnName = "cid_codigo")
     private Cidades cidades;
 
     public Fornecedores() {
@@ -161,5 +161,5 @@ public class Fornecedores implements Serializable {
         }
         return true;
     }
-    
+
 }
