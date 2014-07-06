@@ -32,25 +32,27 @@ public class Clientes implements Serializable {
     @GeneratedValue
     @Column(name = "cli_codigo", nullable = false)
     private Integer cli_codigo;
-    @Column(name = "cli_senha", nullable = false, length = 45)
-    private String cli_senha;
     @Column(name = "cli_tipo", nullable = false, length = 3)
     private char cli_tipo;
     @Column(name = "cli_cpf", nullable = false, length = 11, unique = true)
     private char cli_cpf;
     @Column(name = "cli_nome", nullable = false, length = 45)
     private String cli_nome;
-    @Column(name = "cli_senha", nullable = false, length = 45)
+    @Column(name = "cli_endereco", nullable = false, length = 45)
     private String cli_endereco;
-    @Column(name = "cli_senha", nullable = true, length = 11)
+    @Column(name = "cli_telefone", nullable = true, length = 11)
     private char cli_telefone;
+    @Column(name = "cli_email", nullable = true, length = 50, unique = true)
+    private String cli_email;
+    @Column(name = "cli_senha", nullable = false, length = 45)
+    private String cli_senha;
 
-    @OneToMany(mappedBy = "ven_codigo", fetch = FetchType.LAZY)
-    @ForeignKey(name = "vendasCliente")
+    @OneToMany(mappedBy = "clientes", fetch = FetchType.LAZY)
+    @ForeignKey(name = "vendaCliente")
     private List<Clientes> clientes;
 
     @ManyToOne(optional = false)
-    @ForeignKey(name = "CidadeEstado")
+    @ForeignKey(name = "ClienteCidade")
     @JoinColumn(name = "cli_cid_codigo", referencedColumnName = "cid_codigo")
     private Cidades cidades;
 

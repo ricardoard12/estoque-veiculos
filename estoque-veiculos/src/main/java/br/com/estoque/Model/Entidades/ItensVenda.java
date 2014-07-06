@@ -31,9 +31,9 @@ public class ItensVenda implements Serializable {
     private Integer itvCodigo;
     @Column(name = "itv_quantidade", nullable = false, length = 4)
     private int itvQuantidade;
-    @Column(name = "itv_preco_unit", nullable = false)
+    @Column(name = "itv_preco_unit", nullable = true)
     private Double itvPrecoUnit;
-    @Column(name = "itv_sub_total", nullable = false)
+    @Column(name = "itv_sub_total", nullable = true)
     private Double itvSubTotal;
 
     @ManyToOne(optional = false)
@@ -42,7 +42,7 @@ public class ItensVenda implements Serializable {
     private Produtos produtos;
 
     @ManyToOne(optional = false)
-    @ForeignKey(name = "VendasItensVenda")
+    @ForeignKey(name = "VendaItensVenda")
     @JoinColumn(name = "itv_ven_codigo", referencedColumnName = "ven_cod")
     private Vendas vendas;
 
