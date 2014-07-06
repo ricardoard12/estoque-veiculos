@@ -21,9 +21,9 @@
                                 <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid0">
                                     <h:outputLabel>Código.:</h:outputLabel>
                                     <h:inputText readonly="true" id="catCodigo" value="#{mbCategorias.categoria.catCodigo}"/> 
-                                   <h:outputLabel>Nome.:</h:outputLabel>
+                                   <h:outputLabel>Nome.: *</h:outputLabel>
                                    <h:inputText id="catNome" value="#{mbCategorias.categoria.catNome}" required="true"
-                                                requiredMessage="O Campo não pode ser vazio!"/> 
+                                                requiredMessage="O Nome não pode ser vazio!"/> 
                                    <p:panel>
                                        <p:commandButton value="Salvar" action="#{mbCategorias.addCategoria}" 
                                                         image="ui-icons ui-icon-disk" update="@form"/>
