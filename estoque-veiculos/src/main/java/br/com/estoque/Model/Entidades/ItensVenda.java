@@ -31,6 +31,10 @@ public class ItensVenda implements Serializable {
     private Integer itvCodigo;
     @Column(name = "itv_quantidade", nullable = false, length = 4)
     private int itvQuantidade;
+    @Column(name = "itv_preco_unit", nullable = false)
+    private Double itvPrecoUnit;
+    @Column(name = "itv_sub_total", nullable = false)
+    private Double itvSubTotal;
 
     @ManyToOne(optional = false)
     @ForeignKey(name = "ProdutoItensVenda")
@@ -61,6 +65,22 @@ public class ItensVenda implements Serializable {
 
     public void setItvQuantidade(int itvQuantidade) {
         this.itvQuantidade = itvQuantidade;
+    }
+
+    public Double getItvPrecoUnit() {
+        return itvPrecoUnit;
+    }
+
+    public void setItvPrecoUnit(Double itvPrecoUnit) {
+        this.itvPrecoUnit = itvPrecoUnit;
+    }
+
+    public Double getItvSubTotal() {
+        return itvSubTotal;
+    }
+
+    public void setItvSubTotal(Double itvSubTotal) {
+        this.itvSubTotal = itvSubTotal;
     }
 
     public Produtos getProdutos() {
