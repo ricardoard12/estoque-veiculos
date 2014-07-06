@@ -1,5 +1,5 @@
 
-#top {
+#cabecalho {
     position: relative;
     background-color: #036fab;
     color: white;
@@ -7,52 +7,34 @@
     margin: 0px 0px 10px 0px;
 }
 
-#bottom {
+#rodape {
     position: relative;
     background-color: #c2dfef;
     padding: 5px;
     margin: 10px 0px 0px 0px;
 }
 
-#left {
+#menu {
     float: left;
     background-color: #ece3a5;
     padding: 5px;
     width: 150px;
+    margin: 0px 0px 10px 0px;
 }
 
-#right {
-    float: right;
-    background-color: #ece3a5;
-    padding: 5px;
-    width: 150px;
-}
-
-.center_content {
-    position: relative;
-    background-color: #dddddd;
-    padding: 5px;
-}
-
-.left_content {
+.conteudo {
     background-color: #dddddd;
     padding: 5px;
     margin-left: 170px;
 }
 
-.right_content {
-    background-color: #dddddd;
-    padding: 5px;
-    margin: 0px 170px 0px 170px;
-}
-
-#top a:link, #top a:visited {
+#menu a:link, #menu a:visited {
   color: white;
   font-weight : bold;
   text-decoration: none;
 }
 
-#top a:link:hover, #top a:visited:hover  {
+#menu a:link:hover, #menu a:visited:hover  {
   color: black;
   font-weight : bold;
   text-decoration : underline;

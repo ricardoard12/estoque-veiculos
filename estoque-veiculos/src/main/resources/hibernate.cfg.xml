@@ -4,13 +4,13 @@
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory name="session">
-           <!-- CONFIGURAÇÕES DE CONEXÃO COM O BD -->
+        <!-- CONFIGURAÇÕES DE CONEXÃO COM O BD -->
         
-           <property name="hibernate.connection.driver_class">org.postgresql.Driver</property><!-- Defino o driver de conexão com o bd -->
-       <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/estoque-veiculos?createDataBaseIfNotExist=true</property>
-     <property name="hibernate.connection.username">postgres</property>
-    <property name="hibernate.connection.password">ADS8</property>
-     <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property><!-- Defino o driver de conexão com o bd -->
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/estoque-veiculos?createDatabaseIfNotExist=true</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">ADS8</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         
         <!-- HABILITA A EXIBIÇÃO DO SQL GERADO PELO HIBERNATE E FORMATA-O -->
         
@@ -30,13 +30,13 @@
         <property name="c3p0.idle_test_period">300</property>
         
         <!-- LISTA DE ENTIDADES -->
-    <mapping class="br.com.estoque.Model.Entidades.Categorias"/>
-    <mapping class="br.com.estoque.Model.Entidades.Estados"/>
-    <mapping class="br.com.estoque.Model.Entidades.Cidades"/>
-    <mapping class="br.com.estoque.Model.Entidades.Clientes"/>
-    <mapping class="br.com.estoque.Model.Entidades.Fornecedores"/>
-    <mapping class="br.com.estoque.Model.Entidades.Produtos"/>
-    <mapping class="br.com.estoque.Model.Entidades.Vendas"/>
-    <mapping class="br.com.estoque.Model.Entidades.ItensVenda"/>
+        <mapping class="br.com.estoque.Model.Entidades.Categorias"/>
+        <mapping class="br.com.estoque.Model.Entidades.Estados"/>
+        <mapping class="br.com.estoque.Model.Entidades.Cidades"/>
+        <mapping class="br.com.estoque.Model.Entidades.Clientes"/>
+        <mapping class="br.com.estoque.Model.Entidades.Fornecedores"/>
+        <mapping class="br.com.estoque.Model.Entidades.Produtos"/>
+        <mapping class="br.com.estoque.Model.Entidades.Vendas"/>
+        <mapping class="br.com.estoque.Model.Entidades.ItensVenda"/>
     </session-factory>
 </hibernate-configuration>
