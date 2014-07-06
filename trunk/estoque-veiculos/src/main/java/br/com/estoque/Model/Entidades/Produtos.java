@@ -49,7 +49,7 @@ public class Produtos implements Serializable {
     @Column(name = "pro_observacao", nullable = true, length = 60)
     private String proObservacao;
 
-    @OneToMany(mappedBy = "pro_codigo", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "produtos", fetch = FetchType.LAZY)
     @ForeignKey(name = "ProdutoItensVenda")
     private List<ItensVenda> itensVenda;
 

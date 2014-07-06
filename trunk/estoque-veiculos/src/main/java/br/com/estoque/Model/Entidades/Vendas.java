@@ -36,13 +36,13 @@ public class Vendas implements Serializable {
     @Column(name = "ven_data")
     private String venData;
 
-    @OneToMany(mappedBy = "ven_cod")
-    @ForeignKey(name = "VendasItensVenda")
+    @OneToMany(mappedBy = "vendas")
+    @ForeignKey(name = "VendaItensVenda")
     private List<ItensVenda> itensVenda;
 
     @ManyToOne(optional = false)
-    @ForeignKey(name = "vendasCliente")
-    @JoinColumn(name = "ven_cli_email", referencedColumnName = "cli_email")
+    @ForeignKey(name = "vendaCliente")
+    @JoinColumn(name = "ven_cli_codigo", referencedColumnName = "cli_codigo")
     private Clientes clientes;
 
     public Vendas() {
