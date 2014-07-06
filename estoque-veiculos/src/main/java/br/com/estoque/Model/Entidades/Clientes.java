@@ -44,17 +44,18 @@ public class Clientes implements Serializable {
     private String cli_endereco;
     @Column(name = "cli_senha", nullable = true, length = 11)
     private char cli_telefone;
-    
-    @OneToMany(mappedBy = "ven_codigo",fetch = FetchType.LAZY)
-    @ForeignKey(name="vendasCliente")
+
+    @OneToMany(mappedBy = "ven_codigo", fetch = FetchType.LAZY)
+    @ForeignKey(name = "vendasCliente")
     private List<Clientes> clientes;
-    
+
     @ManyToOne(optional = false)
     @ForeignKey(name = "CidadeEstado")
     @JoinColumn(name = "cli_cid_codigo", referencedColumnName = "cid_codigo")
     private Cidades cidades;
 
     public Clientes() {
+        this.cidades = new Cidades();
     }
 
     public Integer getCli_codigo() {
@@ -128,7 +129,7 @@ public class Clientes implements Serializable {
     public void setCidades(Cidades cidades) {
         this.cidades = cidades;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;

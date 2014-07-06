@@ -47,20 +47,17 @@ public class Fornecedores implements Serializable {
     @Column(name = "for_email", nullable = true, length = 50)
     private String forEmail;
 
-    @OneToMany(mappedBy = "pro_codigo", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "fornecedores", fetch = FetchType.LAZY)
     @ForeignKey(name = "FornecedorProduto")
-    private List<Produtos> produtos;
-
-    @OneToMany(mappedBy = "pro_codigo", fetch = FetchType.LAZY)
-    @ForeignKey(name = "CidadeFornecedor")
-    private List<Cidades> cidades;
-
+    private List<Fornecedores> fornecedores;
+    
     @ManyToOne(optional = false)
-    @ForeignKey(name = "FornecedorProduto")
-    @JoinColumn(name = "pro_cat_codigo", referencedColumnName = "cat_codigo")
-    private Fornecedores fornecedores;
+    @ForeignKey(name = "CidadeFornecedor")
+    @JoinColumn(name = "for_cod_cidade", referencedColumnName = "cod_cidade")
+    private Cidades cidades;
 
     public Fornecedores() {
+        this.cidades = new Cidades();
     }
 
     public Integer getForCodigo() {
@@ -127,27 +124,19 @@ public class Fornecedores implements Serializable {
         this.forEmail = forEmail;
     }
 
-    public List<Produtos> getProdutos() {
-        return produtos;
-    }
-
-    public void setProdutos(List<Produtos> produtos) {
-        this.produtos = produtos;
-    }
-
-    public List<Cidades> getCidades() {
+    public Cidades getCidades() {
         return cidades;
     }
 
-    public void setCidades(List<Cidades> cidades) {
+    public void setCidades(Cidades cidades) {
         this.cidades = cidades;
     }
 
-    public Fornecedores getFornecedores() {
+    public List<Fornecedores> getFornecedores() {
         return fornecedores;
     }
 
-    public void setFornecedores(Fornecedores fornecedores) {
+    public void setFornecedores(List<Fornecedores> fornecedores) {
         this.fornecedores = fornecedores;
     }
 
