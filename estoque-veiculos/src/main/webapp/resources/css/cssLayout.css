@@ -11,7 +11,7 @@
     position: relative;
     background-color: #c2dfef;
     padding: 5px;
-    margin: 100px 0px 0px 0px;
+    margin: 10px 0px 0px 0px;
 }
 
 #menu {
@@ -29,7 +29,7 @@
 }
 
 #menu a:link, #menu a:visited {
-  color: white;
+  color: blueviolet;
   font-weight : bold;
   text-decoration: none;
 }
