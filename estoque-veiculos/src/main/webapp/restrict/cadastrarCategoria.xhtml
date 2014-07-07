@@ -1,44 +1,75 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:c="http://java.sun.com/jsp/jstl/core"
-      xmlns:p="http://primefaces.org/ui">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../resources/restrict/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui">
 
-    <body>
+    <ui:define name="conteudo">
+        <p:fieldset legend="Categorias">
+            <br/>
+            <p:tabView dynamic="true" id="tbv1">
+                <p:tab title="Lista de Categorias">
+                    <h:form id="formtable">
+                        <p:growl id="msg1"/>
+                        <p:dataTable id="idTabela" var="categoria" value="#{mbCategorias.categorias}"
+                                     paginator="true" rows="5" emptyMessage="Nenhum registro encontrado"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink}
+                                     {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15">
 
-        <ui:composition template="./../resources/restrict/main.xhtml">
+                            <f:facet name="header">Lista de Categorias</f:facet>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nome"/>
+                                </f:facet>
+                                <h:outputText value="#{categoria.catNome}"/>
+                            </p:column>
 
-            <ui:define name="conteudo">
-                <p:fieldset legend="Cadastrar Categorias">
-                    <br/>
-                    <p:tabView dynamic="true" id="tbv1">
-                        <p:tab title="Categoria">
-                            <h:form prependId="false" id="formCategoria">
-                                <p:growl id="msg0"/>
-                                <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid0">
-                                    <h:outputLabel>Código.:</h:outputLabel>
-                                    <h:inputText readonly="true" id="catCodigo" value="#{mbCategorias.categoria.catCodigo}"/> 
-                                   <h:outputLabel>Nome.: *</h:outputLabel>
-                                   <h:inputText id="catNome" value="#{mbCategorias.categoria.catNome}" required="true"
-                                                requiredMessage="O Nome não pode ser vazio!"/> 
-                                   <p:panel>
-                                       <p:commandButton value="Salvar" action="#{mbCategorias.addCategoria}" 
-                                                        image="ui-icons ui-icon-disk" update="@form"/>
-                                       <p:commandButton value="Cancelar" actionListener="#{mbCategorias.limpaCategoria}" 
-                                                        image="ui-icon ui-icon-close" update="@form"/>
-                                   </p:panel>
-                                </h:panelGrid>
-                            </h:form>
-                        </p:tab>
-                    </p:tabView>
-                    
-                </p:fieldset>
-            </ui:define>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Ações"/>
+                                </f:facet>
+                                <p:commandButton value="Editar" image="ui-icon ui-icon-pencil"
+                                                 process="@this" update=":tbv1:formCategoria" >
+                                    <f:setPropertyActionListener target="#{mbCategorias.categoria}"
+                                                                 value="#{categoria}"/>
+                                </p:commandButton>
+                                <p:commandButton value="Remover" action="#{mbCategorias.deleteCategoria}"
+                                                 image="ui-icon ui-icon-close" update="@form">
+                                    <f:setPropertyActionListener target="#{mbCategorias.categoria}"
+                                                                 value="#{categoria}"/>
+                                </p:commandButton>
 
-        </ui:composition>
+                            </p:column>
+                        </p:dataTable>
 
-    </body>
-</html>
+                    </h:form>
+                </p:tab>
+                <p:tab id="frm1" title="Cadastrar Categoria">
+                    <h:form prependId="false" id="formCategoria">
+                        <p:growl id="msg0"/>
+                        <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid0">
+                            <h:outputLabel>Código.:</h:outputLabel>
+                            <h:inputText readonly="true" id="catCodigo" value="#{mbCategorias.categoria.catCodigo}"/> 
+                            <h:outputLabel>Nome.: *</h:outputLabel>
+                            <h:inputText id="catNome" value="#{mbCategorias.categoria.catNome}" required="true"
+                                         requiredMessage="O Nome não pode ser vazio!"/> 
+                            <p:panel>
+                                <p:commandButton value="Salvar" action="#{mbCategorias.addCategoria}" 
+                                                 image="ui-icons ui-icon-disk" update="@form,:tbv1"/>
+                                <p:commandButton value="Cancelar" actionListener="#{mbCategorias.limpaCategoria}" 
+                                                 image="ui-icon ui-icon-close" update=":tbv1"/>
+                            </p:panel>
+                        </h:panelGrid>
+                    </h:form>
+                </p:tab>
+            </p:tabView>
+
+        </p:fieldset>
+    </ui:define>
+
+</ui:composition>
