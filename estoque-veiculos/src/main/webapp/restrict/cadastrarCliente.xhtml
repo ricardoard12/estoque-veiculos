@@ -102,8 +102,9 @@
                             <h:outputLabel>Senha.: *</h:outputLabel>
                             <h:inputText id="cliSenha" value="#{mbClientes.cliente.cli_senha}" required="true"
                                          requiredMessage="A Senha não pode ser vazio!"/>
-                            <!--<h:outputLabel>Tipo.: *</h:outputLabel>
-                            <h:selectBooleanCheckbox id="cliTipo" value="#{mbClientes.cliente.cli_tipo}"/>-->
+                            <h:outputLabel>Adminstrador.:</h:outputLabel>
+                            <h:selectBooleanCheckbox value="#{mbClientes.cliente.cli_tipo}" />
+                            
                             <h:outputLabel>Cpf.: *</h:outputLabel>
                             <h:inputText id="cliCpf" value="#{mbClientes.cliente.cli_cpf}" required="true"
                                          requiredMessage="O CPF não pode ser vazio!"/>
@@ -112,7 +113,7 @@
                             <h:outputLabel>Endereço.: *</h:outputLabel>
                             <h:inputText id="cliEndereco" value="#{mbClientes.cliente.cli_endereco}" required="true"
                                          requiredMessage="O Endereço não pode ser vazio!"/>
-                            <h:outputLabel>Telefone.: *</h:outputLabel>
+                            <h:outputLabel>Telefone.:</h:outputLabel>
                             <h:inputText id="cliTelefone" value="#{mbClientes.cliente.cli_telefone}"/>                                         
                             <p:panel>                                
                                 <p:commandButton value="Salvar" action="#{mbClientes.addCliente}" 
