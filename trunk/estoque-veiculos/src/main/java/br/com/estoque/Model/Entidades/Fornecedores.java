@@ -37,7 +37,7 @@ public class Fornecedores implements Serializable {
     @Column(name = "for_nome_fantasia", nullable = true, length = 45)
     private String forNomeFantasia;
     @Column(name = "for_cnpj", nullable = false, length = 14)
-    private char forCnpj;
+    private String forCnpj;
     @Column(name = "for_endereco", nullable = false, length = 50)
     private String forEndereco;
     @Column(name = "for_cep", nullable = true, length = 8)
@@ -84,11 +84,11 @@ public class Fornecedores implements Serializable {
         this.forNomeFantasia = forNomeFantasia;
     }
 
-    public char getForCnpj() {
+    public String getForCnpj() {
         return forCnpj;
     }
 
-    public void setForCnpj(char forCnpj) {
+    public void setForCnpj(String forCnpj) {
         this.forCnpj = forCnpj;
     }
 

@@ -26,7 +26,7 @@ private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "est_sigla", nullable = false)
-    private char est_sigla;
+    private String est_sigla;
     @Column(name="est_nome",nullable = false,length = 40)
     private String est_nome;
     
@@ -37,11 +37,11 @@ private static final long serialVersionUID = 1L;
     public Estados() {
     }
 
-    public char getEst_sigla() {
+    public String getEst_sigla() {
         return est_sigla;
     }
 
-    public void setEst_sigla(char est_sigla) {
+    public void setEst_sigla(String est_sigla) {
         this.est_sigla = est_sigla;
     }
 
@@ -63,8 +63,8 @@ private static final long serialVersionUID = 1L;
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 79 * hash + this.est_sigla;
+        int hash = 7;
+        hash = 89 * hash + (this.est_sigla != null ? this.est_sigla.hashCode() : 0);
         return hash;
     }
 
