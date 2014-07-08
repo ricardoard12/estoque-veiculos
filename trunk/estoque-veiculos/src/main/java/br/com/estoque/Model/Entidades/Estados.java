@@ -25,7 +25,7 @@ public class Estados implements Serializable{
 private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "est_sigla", nullable = false)
+    @Column(name = "est_sigla", nullable = false,length = 2)
     private String est_sigla;
     @Column(name="est_nome",nullable = false,length = 40)
     private String est_nome;
