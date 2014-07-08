@@ -33,15 +33,15 @@ public class Clientes implements Serializable {
     @Column(name = "cli_codigo", nullable = false)
     private Integer cli_codigo;
     @Column(name = "cli_tipo", nullable = true, length = 3)
-    private char cli_tipo;
+    private String cli_tipo;
     @Column(name = "cli_cpf", nullable = false, length = 11, unique = true)
-    private char cli_cpf;
+    private String cli_cpf;
     @Column(name = "cli_nome", nullable = false, length = 45)
     private String cli_nome;
     @Column(name = "cli_endereco", nullable = false, length = 45)
     private String cli_endereco;
     @Column(name = "cli_telefone", nullable = true, length = 11)
-    private char cli_telefone;
+    private String cli_telefone;
     @Column(name = "cli_email", nullable = true, length = 50, unique = true)
     private String cli_email;
     @Column(name = "cli_senha", nullable = false, length = 45)
@@ -76,20 +76,28 @@ public class Clientes implements Serializable {
         this.cli_senha = cli_senha;
     }
 
-    public char getCli_tipo() {
+    public String getCli_tipo() {
         return cli_tipo;
     }
 
-    public void setCli_tipo(char cli_tipo) {
+    public void setCli_tipo(String cli_tipo) {
         this.cli_tipo = cli_tipo;
     }
 
-    public char getCli_cpf() {
+    public String getCli_cpf() {
         return cli_cpf;
     }
 
-    public void setCli_cpf(char cli_cpf) {
+    public void setCli_cpf(String cli_cpf) {
         this.cli_cpf = cli_cpf;
+    }
+
+    public String getCli_telefone() {
+        return cli_telefone;
+    }
+
+    public void setCli_telefone(String cli_telefone) {
+        this.cli_telefone = cli_telefone;
     }
 
     public String getCli_nome() {
@@ -106,14 +114,6 @@ public class Clientes implements Serializable {
 
     public void setCli_endereco(String cli_endereco) {
         this.cli_endereco = cli_endereco;
-    }
-
-    public char getCli_telefone() {
-        return cli_telefone;
-    }
-
-    public void setCli_telefone(char cli_telefone) {
-        this.cli_telefone = cli_telefone;
     }
 
     public String getCli_email() {
