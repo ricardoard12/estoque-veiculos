@@ -32,7 +32,7 @@ public class Clientes implements Serializable {
     @GeneratedValue
     @Column(name = "cli_codigo", nullable = false)
     private Integer cli_codigo;
-    @Column(name = "cli_tipo", nullable = false, length = 3)
+    @Column(name = "cli_tipo", nullable = true, length = 3)
     private char cli_tipo;
     @Column(name = "cli_cpf", nullable = false, length = 11, unique = true)
     private char cli_cpf;
@@ -114,6 +114,14 @@ public class Clientes implements Serializable {
 
     public void setCli_telefone(char cli_telefone) {
         this.cli_telefone = cli_telefone;
+    }
+
+    public String getCli_email() {
+        return cli_email;
+    }
+
+    public void setCli_email(String cli_email) {
+        this.cli_email = cli_email;
     }
 
     public List<Clientes> getClientes() {
