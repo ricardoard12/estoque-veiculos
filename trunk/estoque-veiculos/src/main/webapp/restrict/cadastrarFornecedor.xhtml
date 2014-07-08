@@ -92,32 +92,31 @@
                         <p:growl id="msg0"/>
                         <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid0">
                             <h:outputLabel>Código.:</h:outputLabel>
-                            <h:inputText readonly="true" id="catCodigo" value="#{mbClientes.cliente.cli_codigo}"/> 
-                            <h:outputLabel>Nome.: *</h:outputLabel>
-                            <h:inputText id="cliNome" value="#{mbClientes.cliente.cli_nome}" required="true"
-                                         requiredMessage="O Nome não pode ser vazio!"/> 
+                            <h:inputText readonly="true" id="forCodigo" value="#{mbFornecedores.fornecedor.forCodigo}"/> 
+                            <h:outputLabel>Razão.: *</h:outputLabel>
+                            <h:inputText id="forRazao" value="#{mbFornecedores.fornecedor.forRazao}" required="true"
+                                         requiredMessage="A Razão não pode ser vazia!"/> 
+                            <h:outputLabel>Nome Fantasia.: *</h:outputLabel>
+                            <h:inputText id="forNomeFantasia" value="#{mbFornecedores.fornecedor.forNomeFantasia}" required="true"
+                                         requiredMessage="O Nome Fantasia não pode ser vazio!"/>
                             <h:outputLabel>Email.: *</h:outputLabel>
-                            <h:inputText id="cliEmail" value="#{mbClientes.cliente.cli_email}" required="true"
-                                         requiredMessage="O Email não pode ser vazio!"/>
-                            <h:outputLabel>Senha.: *</h:outputLabel>
-                            <h:inputText id="cliSenha" value="#{mbClientes.cliente.cli_senha}" required="true"
-                                         requiredMessage="A Senha não pode ser vazio!"/>
-                            <!--<h:outputLabel>Tipo.: *</h:outputLabel>
-                            <h:selectBooleanCheckbox id="cliTipo" value="#{mbClientes.cliente.cli_tipo}"/>-->
-                            <h:outputLabel>Cpf.: *</h:outputLabel>
-                            <h:inputText id="cliCpf" value="#{mbClientes.cliente.cli_cpf}" required="true"
-                                         requiredMessage="O CPF não pode ser vazio!"/>
-                            <h:outputLabel>Cidade.: *</h:outputLabel>
-                            <h:selectOneListbox id="cliCidade" value="#{mbClientes.cliente.cid_codigo}"/>                                                 
+                            <h:inputText id="forEmail" value="#{mbFornecedores.fornecedor.forEmail}" required="true"
+                                         requiredMessage="O Email não pode ser vazio!"/>                         
+                            <h:outputLabel>CNPJ.: *</h:outputLabel>
+                            <h:inputText id="forCnpj" value="#{mbFornecedores.fornecedor.forCnpj}" required="true"
+                                         requiredMessage="O CNPJ não pode ser vazio!"/>
+                            <h:outputLabel>CEP.: *</h:outputLabel>
+                            <h:selectOneListbox id="forCep" value="#{mbFornecedores.fornecedor.forCep}"required="true"
+                                         requiredMessage="O CEP não pode ser vazio!"/>                                                 
                             <h:outputLabel>Endereço.: *</h:outputLabel>
-                            <h:inputText id="cliEndereco" value="#{mbClientes.cliente.cli_endereco}" required="true"
+                            <h:inputText id="forEndereco" value="#{mbFornecedores.fornecedor.forEndereco}" required="true"
                                          requiredMessage="O Endereço não pode ser vazio!"/>
                             <h:outputLabel>Telefone.: *</h:outputLabel>
-                            <h:inputText id="cliTelefone" value="#{mbClientes.cliente.cli_telefone}"/>                                         
+                            <h:inputText id="forTelefone" value="#{mbFornecedores.fornecedor.forTelefone}"/>                                         
                             <p:panel>                                
-                                <p:commandButton value="Salvar" action="#{mbClientes.addCliente}" 
+                                <p:commandButton value="Salvar" action="#{mbFornecedores.addFornecedor}" 
                                                  image="ui-icons ui-icon-disk" update="@form,:tbv1"/>
-                                <p:commandButton value="Cancelar" actionListener="#{mbClientes.limpaCliente}" 
+                                <p:commandButton value="Cancelar" actionListener="#{mbFornecedores.limpaFornecedor}" 
                                                  image="ui-icon ui-icon-close" update=":tbv1"/>
                             </p:panel>
                         </h:panelGrid>
