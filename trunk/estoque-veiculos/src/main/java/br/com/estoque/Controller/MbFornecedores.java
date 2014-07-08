@@ -8,14 +8,13 @@ package br.com.estoque.Controller;
 
 import br.com.estoque.Model.DAO.HibernateDAO;
 import br.com.estoque.Model.DAO.InterfaceDAO;
-import br.com.estoque.Model.Entidades.Categorias;
 import br.com.estoque.Model.Entidades.Fornecedores;
 import br.com.estoque.Util.FacesContextUtil;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 /**
@@ -23,7 +22,7 @@ import javax.faces.context.FacesContext;
  * @author Luciano E. Mundt
  */
 @ManagedBean(name = "mbFornecedores")
-@SessionScoped
+@RequestScoped
 public class MbFornecedores implements Serializable {
 
     private static final long serialVersionUID = 1L;
