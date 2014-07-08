@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../resources/restrict/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="conteudo">
+        <p:fieldset legend="Fornecedores">
+            <br/>
+            <p:tabView dynamic="true" id="tbv1">
+                <p:tab title="Lista de Fornecedores">
+                    <h:form id="formtable">
+                        <p:growl id="msg1"/>
+                        <p:dataTable id="idTabela" var="fornecedor" value="#{mbFornecedores.fornecedores}"
+                                     paginator="true" rows="5" emptyMessage="Nenhum registro encontrado"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink}
+                                     {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15">
+
+                            <f:facet name="header">Lista de Fornecedores</f:facet>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Razão"/>
+                                </f:facet>
+                                <h:outputText value="#{fornecedor.forRazao}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nome Fantasia"/>
+                                </f:facet>
+                                <h:outputText value="#{fornecedor.forNomeFantasia}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="CNPJ"/>
+                                </f:facet>
+                                <h:outputText value="#{fornecedor.forCnpj}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Endereço"/>
+                                </f:facet>
+                                <h:outputText value="#{fornecedor.forEndereco}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Email"/>
+                                </f:facet>
+                                <h:outputText value="#{fornecedor.forEmail}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Telefone"/>
+                                </f:facet>
+                                <h:outputText value="#{fornecedor.forTelefone}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="CEP"/>
+                                </f:facet>
+                                <h:outputText value="#{fornecedor.forCep}"/>
+                            </p:column>
+                            
+
+                            <!--Botões editar e excluir -->
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Ações"/>
+                                </f:facet>
+                                <p:commandButton value="Editar" image="ui-icon ui-icon-pencil"
+                                                 process="@this" update=":tbv1:formCliente" >
+                                    <f:setPropertyActionListener target="#{mbFornecedores.fornecedor}"
+                                                                 value="#{fornecedor}"/>
+                                </p:commandButton>
+                                <p:commandButton value="Remover" action="#{mbFornecedores.deleteFornecedor}"
+                                                 image="ui-icon ui-icon-close" update="@form">
+                                    <f:setPropertyActionListener target="#{mbFornecedores.fornecedor}"
+                                                                 value="#{fornecedor}"/>
+                                </p:commandButton>
+
+                            </p:column>
+                        </p:dataTable>
+
+                    </h:form>
+                </p:tab>
+                <p:tab id="frm1" title="Cadastrar Fornecedor">
+                    <h:form prependId="false" id="formFornecedor">
+                        <p:growl id="msg0"/>
+                        <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid0">
+                            <h:outputLabel>Código.:</h:outputLabel>
+                            <h:inputText readonly="true" id="catCodigo" value="#{mbClientes.cliente.cli_codigo}"/> 
+                            <h:outputLabel>Nome.: *</h:outputLabel>
+                            <h:inputText id="cliNome" value="#{mbClientes.cliente.cli_nome}" required="true"
+                                         requiredMessage="O Nome não pode ser vazio!"/> 
+                            <h:outputLabel>Email.: *</h:outputLabel>
+                            <h:inputText id="cliEmail" value="#{mbClientes.cliente.cli_email}" required="true"
+                                         requiredMessage="O Email não pode ser vazio!"/>
+                            <h:outputLabel>Senha.: *</h:outputLabel>
+                            <h:inputText id="cliSenha" value="#{mbClientes.cliente.cli_senha}" required="true"
+                                         requiredMessage="A Senha não pode ser vazio!"/>
+                            <!--<h:outputLabel>Tipo.: *</h:outputLabel>
+                            <h:selectBooleanCheckbox id="cliTipo" value="#{mbClientes.cliente.cli_tipo}"/>-->
+                            <h:outputLabel>Cpf.: *</h:outputLabel>
+                            <h:inputText id="cliCpf" value="#{mbClientes.cliente.cli_cpf}" required="true"
+                                         requiredMessage="O CPF não pode ser vazio!"/>
+                            <h:outputLabel>Cidade.: *</h:outputLabel>
+                            <h:selectOneListbox id="cliCidade" value="#{mbClientes.cliente.cid_codigo}"/>                                                 
+                            <h:outputLabel>Endereço.: *</h:outputLabel>
+                            <h:inputText id="cliEndereco" value="#{mbClientes.cliente.cli_endereco}" required="true"
+                                         requiredMessage="O Endereço não pode ser vazio!"/>
+                            <h:outputLabel>Telefone.: *</h:outputLabel>
+                            <h:inputText id="cliTelefone" value="#{mbClientes.cliente.cli_telefone}"/>                                         
+                            <p:panel>                                
+                                <p:commandButton value="Salvar" action="#{mbClientes.addCliente}" 
+                                                 image="ui-icons ui-icon-disk" update="@form,:tbv1"/>
+                                <p:commandButton value="Cancelar" actionListener="#{mbClientes.limpaCliente}" 
+                                                 image="ui-icon ui-icon-close" update=":tbv1"/>
+                            </p:panel>
+                        </h:panelGrid>
+                    </h:form>
+                </p:tab>
+            </p:tabView>
+
+        </p:fieldset>
+    </ui:define>
+
+</ui:composition>
