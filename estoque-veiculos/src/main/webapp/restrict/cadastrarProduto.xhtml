@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+       template="./../resources/restrict/main.xhtml"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:c="http://java.sun.com/jsp/jstl/core"
+        xmlns:p="http://primefaces.org/ui">
+    <body>
+
+        <ui:composition template="./../resources/restrict/main.xhtml">
+
+            <ui:define name="conteudo">
+                <p:fieldset legend="Produtos">
+            <br/>
+            <p:tabView dynamic="true" id="tbv1">
+                <p:tab title="Lista de Produtos">
+                    <h:form id="formtable">
+                        <p:growl id="msg1"/>
+                        <p:dataTable id="idTabela" var="produto" value="#{mbProdutos.produtos}"
+                                     paginator="true" rows="5" emptyMessage="Nenhum registro encontrado"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink}
+                                     {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15">
+
+                            <f:facet name="header">Lista de Produtos</f:facet>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nome"/>
+                                </f:facet>
+                                <h:outputText value="#{produto.proNome}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Descrição"/>
+                                </f:facet>
+                                <h:outputText value="#{produto.proDescricao}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Marca"/>
+                                </f:facet>
+                                <h:outputText value="#{produto.proMarca}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Imagem"/>
+                                </f:facet>
+                                <h:outputText value="#{produto.proImg}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Quantidade"/>
+                                </f:facet>
+                                <h:outputText value="#{produto.proQtd}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Valor da Compra"/>
+                                </f:facet>
+                                <h:outputText value="#{produto.proValorCompra}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Valor da Venda"/>
+                                </f:facet>
+                                <h:outputText value="#{produto.proValorVenda}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Obrservação"/>
+                                </f:facet>
+                                <h:outputText value="#{produto.proObservacao}"/>
+                            </p:column>
+
+                            <!--Botões editar e excluir -->
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Ações"/>
+                                </f:facet>
+                                <p:commandButton value="Editar" image="ui-icon ui-icon-pencil"
+                                                 process="@this" update=":tbv1:formCliente" >
+                                    <f:setPropertyActionListener target="#{mbProdutos.produto}"
+                                                                 value="#{produto}"/>
+                                </p:commandButton>
+                                <p:commandButton value="Remover" action="#{mbProdutos.deleteProduto}"
+                                                 image="ui-icon ui-icon-close" update="@form">
+                                    <f:setPropertyActionListener target="#{mbProdutos.produto}"
+                                                                 value="#{produto}"/>
+                                </p:commandButton>
+
+                            </p:column>
+                        </p:dataTable>
+
+                    </h:form>
+                </p:tab>
+                <p:tab id="frm1" title="Cadastrar Produto">
+                    <h:form prependId="false" id="formProduto">
+                        <p:growl id="msg0"/>
+                        <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid0">
+                            <h:outputLabel>Código.:</h:outputLabel>
+                            <h:inputText readonly="true" id="proCodigo" value="#{mbProdutos.produto.proCodigo}"/> 
+                            <h:outputLabel>Nome.: *</h:outputLabel>
+                            <h:inputText id="proNome" value="#{mbProdutos.produto.proNome}" required="true"
+                                         requiredMessage="O Nome não pode ser vazio!"/> 
+                            <h:outputLabel>Descrição.: *</h:outputLabel>
+                            <h:inputText id="proDescrição" value="#{mbProdutos.produto.proDescricao}" required="true"
+                                         requiredMessage="A Descrição não pode ser vazia!"/> 
+                            <h:outputLabel>Marca.: *</h:outputLabel>
+                            <h:inputText id="proMarca" value="#{mbProdutos.produto.proMarca}" required="true"
+                                         requiredMessage="A Marca não pode ser vazio!"/>
+                            <h:outputLabel>Imagem.: *</h:outputLabel>
+                            <h:inputText id="proImagem" value="#{mbProdutos.produto.proImg}" required="true"
+                                         requiredMessage="A Imagem não pode ser vazia!"/>
+                            <h:outputLabel>Quantidade.:</h:outputLabel>
+                            <h:inputText id="proQtde" value="#{mbProdutos.produto.proQtd}" required="true"
+                                         requiredMessage="A Quantidade não pode ser vazia!"/>
+                            <h:outputLabel>Valor da Compra.:</h:outputLabel>
+                            <h:inputText id="proValorCompra" value="#{mbProdutos.produto.proValorCompra}" required="true"
+                                         requiredMessage="O Valor da Compra não pode ser vazio!"/>                                                                          
+                            <h:outputLabel>Valor da Venda.: *</h:outputLabel>
+                            <h:inputText id="proValorVenda" value="#{mbProdutos.produto.proValorVenda}" required="true"
+                                         requiredMessage="O Valor da Venda não pode ser vazio!"/>
+                            <h:outputLabel>Observação.:</h:outputLabel>
+                            <h:inputText id="proObservacao" value="#{mbProdutos.produto.proObservacao}"/>                                         
+                            <p:panel>                                
+                                <p:commandButton value="Salvar" action="#{mbProdutos.addProduto}" 
+                                                 image="ui-icons ui-icon-disk" update="@form,:tbv1"/>
+                                <p:commandButton value="Cancelar" actionListener="#{mbProdutos.limpaProduto}" 
+                                                 image="ui-icon ui-icon-close" update=":tbv1"/>
+                            </p:panel>
+                        </h:panelGrid>
+                    </h:form>
+                </p:tab>
+            </p:tabView>
+
+        </p:fieldset>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
