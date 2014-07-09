@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../resources/restrict/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="conteudo">
+        <p:fieldset legend="Cidades">
+            <br/>
+            <p:tabView dynamic="true" id="tbv1">
+                <p:tab title="Lista de Cidades">
+                    <h:form id="formtable">
+                        <p:growl id="msg1"/>
+                        <p:dataTable id="idTabela" var="cidade" value="#{mbCidades.cidades}"
+                                     paginator="true" rows="5" emptyMessage="Nenhum registro encontrado"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink}
+                                     {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="5,10,15">
+                            <f:facet name="header">Lista de Cidades</f:facet>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nome"/>
+                                </f:facet>
+                                <h:outputText value="#{cidade.cid_nome}"/>
+                            </p:column>
+                            <!--Botões editar e excluir -->
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Ações"/>
+                                </f:facet>
+                                <p:commandButton value="Editar" image="ui-icon ui-icon-pencil"
+                                                 process="@this" update=":tbv1:formCliente" >
+                                    <f:setPropertyActionListener target="#{mbCidades.cidade}"
+                                                                 value="#{cidade}"/>
+                                </p:commandButton>
+                                <p:commandButton value="Remover" action="#{mbCidades.deleteCidade}"
+                                                 image="ui-icon ui-icon-close" update="@form">
+                                    <f:setPropertyActionListener target="#{mbCidades.cidade}"
+                                                                 value="#{cidade}"/>
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </p:tab>
+                <p:tab id="frm1" title="Cadastrar Cidade">
+                    <h:form prependId="false" id="formCidade">
+                        <p:growl id="msg0"/>
+                        <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid0">
+                            <h:outputLabel>Código.:</h:outputLabel>
+                            <h:inputText readonly="true" id="cidCodigo" value="#{mbCidades.cidade.cid_codigo}"/> 
+                            <h:outputLabel>Nome.: *</h:outputLabel>
+                            <h:inputText id="cidNome" value="#{mbCidades.cidade.cid_nome}" required="true"
+                                         requiredMessage="O Nome não pode ser vazio!"/> 
+                            <p:panel>                                
+                                <p:commandButton value="Salvar" action="#{mbCidades.addCidade}" 
+                                                 image="ui-icons ui-icon-disk" update="@form,:tbv1"/>
+                                <p:commandButton value="Cancelar" actionListener="#{mbCidades.limpaCidade}" 
+                                                 image="ui-icon ui-icon-close" update=":tbv1"/>
+                            </p:panel>
+                        </h:panelGrid>
+                    </h:form>
+                </p:tab>
+            </p:tabView>
+        </p:fieldset>
+    </ui:define>
+</ui:composition>
