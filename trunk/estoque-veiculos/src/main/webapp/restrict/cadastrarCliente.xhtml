@@ -63,7 +63,7 @@
                                 <f:facet name="header">
                                     <h:outputText value="Cidade"/>
                                 </f:facet>
-                                <h:outputText value=""/>
+                                <h:outputText value="#{cliente.cidades.cid_nome}"/>
                             </p:column>
 
                             <!--Botões editar e excluir -->
@@ -103,13 +103,22 @@
                             <h:inputText id="cliSenha" value="#{mbClientes.cliente.cli_senha}" required="true"
                                          requiredMessage="A Senha não pode ser vazio!"/>
                             <h:outputLabel>Adminstrador.:</h:outputLabel>
-                            <h:selectBooleanCheckbox value="#{mbClientes.cliente.cli_tipo}" />
-                            
+                            <h:selectBooleanCheckbox  value="#{mbClientes.cliente.cli_tipo}" />
+
                             <h:outputLabel>Cpf.: *</h:outputLabel>
                             <h:inputText id="cliCpf" value="#{mbClientes.cliente.cli_cpf}" required="true"
                                          requiredMessage="O CPF não pode ser vazio!"/>
+                            <h:outputLabel>Estado.: *</h:outputLabel>
+                            <p:selectOneMenu id="estado" value="#{cidadeEstadoView.estado}" style="width:160px">
+                                <p:ajax listener="#{cidadeEstadoView.onEstadoChange}" update="cidade" />
+                                <f:selectItem itemLabel="Selecione Estado" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{cidadeEstadoView.estados}" />
+                            </p:selectOneMenu>
                             <h:outputLabel>Cidade.: *</h:outputLabel>
-                            <h:selectOneListbox id="cliCidade" value="#{mbClientes.cliente.cid_codigo}"/>                                                 
+                            <p:selectOneMenu id="cidade" value="#{mbClientes.cidade.cid_codigo}" style="width:160px">
+                                <f:selectItem itemLabel="Selecione Cidade" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{cidadeEstadoView.cidades}" />
+                            </p:selectOneMenu>                                              
                             <h:outputLabel>Endereço.: *</h:outputLabel>
                             <h:inputText id="cliEndereco" value="#{mbClientes.cliente.cli_endereco}" required="true"
                                          requiredMessage="O Endereço não pode ser vazio!"/>
