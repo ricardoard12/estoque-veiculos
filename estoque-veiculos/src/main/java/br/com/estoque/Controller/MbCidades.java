@@ -8,6 +8,7 @@ package br.com.estoque.Controller;
 import br.com.estoque.Model.DAO.HibernateDAO;
 import br.com.estoque.Model.DAO.InterfaceDAO;
 import br.com.estoque.Model.Entidades.Cidades;
+import br.com.estoque.Model.Entidades.Estados;
 import br.com.estoque.Util.FacesContextUtil;
 import java.io.Serializable;
 import java.util.List;
@@ -27,6 +28,7 @@ public class MbCidades implements Serializable {
     private static final long serialVersionUID = 1L;
     private Cidades cidade = new Cidades();
     private List<Cidades> cidades;
+    private List<Estados> estados;
 
     public MbCidades() {
     }
@@ -34,6 +36,11 @@ public class MbCidades implements Serializable {
     private InterfaceDAO<Cidades> cidadesDAO() {
         InterfaceDAO<Cidades> cidadesDAO = new HibernateDAO<Cidades>(Cidades.class, FacesContextUtil.getRequestSession());
         return cidadesDAO;
+    }
+
+    private InterfaceDAO<Estados> EstadosDAO() {
+        InterfaceDAO<Estados> EstadosDAO = new HibernateDAO<Estados>(Estados.class, FacesContextUtil.getRequestSession());
+        return EstadosDAO;
     }
 
     public String limpaCidade() {
@@ -88,4 +95,13 @@ public class MbCidades implements Serializable {
     public void setCidade(Cidades cidade) {
         this.cidade = cidade;
     }
+
+    public List<Estados> getEstados() {
+        return estados;
+    }
+
+    public void setEstados(List<Estados> estados) {
+        this.estados = estados;
+    }
+
 }
