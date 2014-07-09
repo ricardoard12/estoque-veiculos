@@ -1,30 +1,33 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 package br.com.estoque.Controller;
 
 import br.com.estoque.Model.DAO.HibernateDAO;
 import br.com.estoque.Model.DAO.InterfaceDAO;
-import br.com.estoque.Model.Entidades.Categorias;
 import br.com.estoque.Model.Entidades.Produtos;
 import br.com.estoque.Util.FacesContextUtil;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 /**
  *
- * @author Luciano E. Mundt
+ * @author Rogério Koglin
  */
 @ManagedBean(name = "mbProdutos")
-@SessionScoped
+@RequestScoped
 public class MbProdutos implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private Produtos produto = new Produtos();
     private List<Produtos> produtos;
-
     public MbProdutos() {
     }
 
@@ -55,15 +58,15 @@ public class MbProdutos implements Serializable {
     private void insertProduto() {
         produtosDAO().save(produto);
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Produto Gravado com SUCESSO!", ""));
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Produto Gravada com SUCESSO!", ""));
     }
 
     private void updateProduto() {
         produtosDAO().update(produto);
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Produto Atualizado com SUCESSO!", ""));
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Produto Atualizada com SUCESSO!", ""));
     }
-    public void deleteCategoria() {
+    public void deleteProduto() {
         produtosDAO().remove(produto);
     }
 //Gets e Seters
