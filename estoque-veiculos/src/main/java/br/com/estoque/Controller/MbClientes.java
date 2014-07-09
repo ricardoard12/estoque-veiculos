@@ -7,6 +7,7 @@ package br.com.estoque.Controller;
 
 import br.com.estoque.Model.DAO.HibernateDAO;
 import br.com.estoque.Model.DAO.InterfaceDAO;
+import br.com.estoque.Model.Entidades.Cidades;
 import br.com.estoque.Model.Entidades.Clientes;
 import br.com.estoque.Util.FacesContextUtil;
 import java.io.Serializable;
@@ -27,13 +28,19 @@ public class MbClientes implements Serializable {
     private static final long serialVersionUID = 1L;
     private Clientes cliente = new Clientes();
     private List<Clientes> clientes;
-
+    private List<Cidades> cidades;
+    private Cidades cidade = new Cidades();
     public MbClientes() {
     }
 
     private InterfaceDAO<Clientes> clientesDAO() {
         InterfaceDAO<Clientes> clientesDAO = new HibernateDAO<Clientes>(Clientes.class, FacesContextUtil.getRequestSession());
         return clientesDAO;
+    }
+
+    private InterfaceDAO<Cidades> cidadesDAO() {
+        InterfaceDAO<Cidades> cidadesDAO = new HibernateDAO<Cidades>(Cidades.class, FacesContextUtil.getRequestSession());
+        return cidadesDAO;
     }
 
     public String limpaCliente() {
@@ -46,6 +53,11 @@ public class MbClientes implements Serializable {
     }
 
     public String addCliente() {
+        if (cliente.getCli_tipo() == "true") {
+            cliente.setCli_tipo("adm");
+        } else {
+            cliente.setCli_tipo("cli");
+        }
         if (cliente.getCli_codigo() == null || cliente.getCli_codigo() == 0) {
             insertCliente();
         } else {
@@ -56,7 +68,11 @@ public class MbClientes implements Serializable {
     }
 
     private void insertCliente() {
+        System.out.println("#######################################################3 cidfade" + cidade.getCid_codigo().toString());
+        cliente.setCidades(cidade);
+        System.out.println("cliente_Cidade" + cliente.getCidades().getCid_codigo().toString());
         clientesDAO().save(cliente);
+
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Cliente Gravado com SUCESSO!", ""));
     }
@@ -88,4 +104,21 @@ public class MbClientes implements Serializable {
     public void setCliente(Clientes cliente) {
         this.cliente = cliente;
     }
+
+    public List<Cidades> getCidades() {
+        return cidades;
+    }
+
+    public void setCidades(List<Cidades> cidades) {
+        this.cidades = cidades;
+    }
+
+    public Cidades getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidades cidade) {
+        this.cidade = cidade;
+    }
+
 }
