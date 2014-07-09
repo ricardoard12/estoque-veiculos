@@ -77,7 +77,11 @@ public class Clientes implements Serializable {
     }
 
     public String getCli_tipo() {
-        return cli_tipo;
+        if (cli_tipo.equals("true")) {
+            return "adm";
+        } else {
+            return "cli";
+        }
     }
 
     public void setCli_tipo(String cli_tipo) {
