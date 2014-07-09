@@ -1,19 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-       template="./../resources/restrict/main.xhtml"
-        xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:f="http://java.sun.com/jsf/core"
-        xmlns:h="http://java.sun.com/jsf/html"
-        xmlns:c="http://java.sun.com/jsp/jstl/core"
-        xmlns:p="http://primefaces.org/ui">
-    <body>
-
-        <ui:composition template="./../resources/restrict/main.xhtml">
-
-            <ui:define name="conteudo">
-                <p:fieldset legend="Produtos">
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../resources/restrict/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="conteudo">
+        <p:fieldset legend="Produtos">
             <br/>
             <p:tabView dynamic="true" id="tbv1">
                 <p:tab title="Lista de Produtos">
@@ -120,12 +115,12 @@
                                          requiredMessage="A Quantidade não pode ser vazia!"/>
                             <h:outputLabel>Valor da Compra.:</h:outputLabel>
                             <h:inputText id="proValorCompra" value="#{mbProdutos.produto.proValorCompra}" required="true"
-                                         requiredMessage="O Valor da Compra não pode ser vazio!"/>                                                                          
+                                         requiredMessage="O Valor da Compra não pode ser vazio!"/>                                                                  
                             <h:outputLabel>Valor da Venda.: *</h:outputLabel>
                             <h:inputText id="proValorVenda" value="#{mbProdutos.produto.proValorVenda}" required="true"
                                          requiredMessage="O Valor da Venda não pode ser vazio!"/>
                             <h:outputLabel>Observação.:</h:outputLabel>
-                            <h:inputText id="proObservacao" value="#{mbProdutos.produto.proObservacao}"/>                                         
+                            <h:inputText id="proObservacao" value="#{mbProdutos.produto.proObservacao}"/>                                        
                             <p:panel>                                
                                 <p:commandButton value="Salvar" action="#{mbProdutos.addProduto}" 
                                                  image="ui-icons ui-icon-disk" update="@form,:tbv1"/>
@@ -138,9 +133,6 @@
             </p:tabView>
 
         </p:fieldset>
-            </ui:define>
+    </ui:define>
 
-        </ui:composition>
-
-    </body>
-</html>
+</ui:composition>
