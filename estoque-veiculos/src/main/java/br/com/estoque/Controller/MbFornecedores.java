@@ -8,6 +8,7 @@ package br.com.estoque.Controller;
 
 import br.com.estoque.Model.DAO.HibernateDAO;
 import br.com.estoque.Model.DAO.InterfaceDAO;
+import br.com.estoque.Model.Entidades.Cidades;
 import br.com.estoque.Model.Entidades.Fornecedores;
 import br.com.estoque.Util.FacesContextUtil;
 import java.io.Serializable;
@@ -28,15 +29,20 @@ public class MbFornecedores implements Serializable {
     private static final long serialVersionUID = 1L;
     private Fornecedores fornecedor = new Fornecedores();
     private List<Fornecedores> fornecedores;
+    private Cidades cidade = new Cidades();
 
     public MbFornecedores() {
+
     }
 
     private InterfaceDAO<Fornecedores> fornecedoresDAO() {
         InterfaceDAO<Fornecedores> fornecedoresDAO = new HibernateDAO<Fornecedores>(Fornecedores.class, FacesContextUtil.getRequestSession());
         return fornecedoresDAO;
     }
-
+    private InterfaceDAO<Cidades> cidadesDAO() {
+        InterfaceDAO<Cidades> cidadesDAO = new HibernateDAO<Cidades>(Cidades.class, FacesContextUtil.getRequestSession());
+        return cidadesDAO;
+    }
     public String limpaFornecedor() {
         fornecedor = new Fornecedores();
         return "/restrict/cadastrarFornecedor.faces";
@@ -57,6 +63,7 @@ public class MbFornecedores implements Serializable {
     }
 
     private void insertFornecedor() {
+        fornecedor.setCidades(cidade);
         fornecedoresDAO().save(fornecedor);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Fornecedor Gravado com SUCESSO!", ""));
@@ -70,7 +77,15 @@ public class MbFornecedores implements Serializable {
     public void deleteFornecedor() {
         fornecedoresDAO().remove(fornecedor);
     }
+
 //Gets e Seters
+    public Cidades getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidades cidade) {
+        this.cidade = cidade;
+    }
 
     public List<Fornecedores> getFornecedores() {
         fornecedores = fornecedoresDAO().getEntities();
