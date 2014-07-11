@@ -72,7 +72,7 @@
                                     <h:outputText value="Ações"/>
                                 </f:facet>
                                 <p:commandButton value="Editar" image="ui-icon ui-icon-pencil"
-                                                 process="@this" update=":tbv1:formCliente" >
+                                                 process="@this" update=":tbv1:formFornecedor" >
                                     <f:setPropertyActionListener target="#{mbFornecedores.fornecedor}"
                                                                  value="#{fornecedor}"/>
                                 </p:commandButton>
@@ -105,13 +105,24 @@
                             <h:outputLabel>CNPJ.: *</h:outputLabel>
                             <h:inputText id="forCnpj" value="#{mbFornecedores.fornecedor.forCnpj}" required="true"
                                          requiredMessage="O CNPJ não pode ser vazio!"/>
+                                                        <h:outputLabel>Estado.: *</h:outputLabel>
+                            <p:selectOneMenu id="estado" value="#{cidadeEstadoView.estado}" style="width:160px">
+                                <p:ajax listener="#{cidadeEstadoView.onEstadoChange}" update="cidade" />
+                                <f:selectItem itemLabel="Selecione Estado" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{cidadeEstadoView.estados}" />
+                            </p:selectOneMenu>
+                            <h:outputLabel>Cidade.: *</h:outputLabel>
+                            <p:selectOneMenu id="cidade" value="#{mbFornecedores.cidade.cid_codigo}" style="width:160px">
+                                <f:selectItem itemLabel="Selecione Cidade" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{cidadeEstadoView.cidades}" />
+                            </p:selectOneMenu>  
                             <h:outputLabel>CEP.: *</h:outputLabel>
-                            <h:selectOneListbox id="forCep" value="#{mbFornecedores.fornecedor.forCep}"required="true"
+                            <h:inputText id="forCep" value="#{mbFornecedores.fornecedor.forCep}" required="true"
                                          requiredMessage="O CEP não pode ser vazio!"/>                                                 
                             <h:outputLabel>Endereço.: *</h:outputLabel>
                             <h:inputText id="forEndereco" value="#{mbFornecedores.fornecedor.forEndereco}" required="true"
                                          requiredMessage="O Endereço não pode ser vazio!"/>
-                            <h:outputLabel>Telefone.: *</h:outputLabel>
+                            <h:outputLabel>Telefone.: </h:outputLabel>
                             <h:inputText id="forTelefone" value="#{mbFornecedores.fornecedor.forTelefone}"/>                                         
                             <p:panel>                                
                                 <p:commandButton value="Salvar" action="#{mbFornecedores.addFornecedor}" 
