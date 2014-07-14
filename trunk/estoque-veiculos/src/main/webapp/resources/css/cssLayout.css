@@ -13,7 +13,16 @@
     padding: 5px;
     margin: 10px 0px 0px 0px;
 }
-
+#logoff{
+    float: right;
+    position: inherit;
+    background-color: #D20005;
+}
+#imagem{
+    position: relative;
+    background-color: #c2dfef;
+    width: 500px;
+}
 #menu {
     float: left;
     background-color: #ece3a5;
