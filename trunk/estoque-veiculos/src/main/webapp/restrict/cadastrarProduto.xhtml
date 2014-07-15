@@ -75,7 +75,7 @@
                                     <h:outputText value="Ações"/>
                                 </f:facet>
                                 <p:commandButton value="Editar" image="ui-icon ui-icon-pencil"
-                                                 process="@this" update=":tbv1:formCliente" >
+                                                 process="@this" update=":tbv1:formProduto" >
                                     <f:setPropertyActionListener target="#{mbProdutos.produto}"
                                                                  value="#{produto}"/>
                                 </p:commandButton>
@@ -104,7 +104,7 @@
                             <h:inputText id="proMarca" value="#{mbProdutos.produto.proMarca}" required="true"
                                          requiredMessage="A Marca não pode ser vazio!"/>
                             <h:outputLabel>Imagem.: *</h:outputLabel>
-                            <h:inputText id="proImagem" value="#{mbProdutos.produto.proImg}" required="true"
+                            <h:inputText id="proImagem" value="#{mbProdutos.produto.proImg}" required="false"
                                          requiredMessage="A Imagem não pode ser vazia!"/>
                             <h:outputLabel>Quantidade.:</h:outputLabel>
                             <h:inputText id="proQtde" value="#{mbProdutos.produto.proQtd}" required="true"
