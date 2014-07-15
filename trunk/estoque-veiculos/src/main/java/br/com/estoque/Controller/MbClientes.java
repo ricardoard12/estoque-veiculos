@@ -15,6 +15,7 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 /**
@@ -22,7 +23,7 @@ import javax.faces.context.FacesContext;
  * @author Luciano E. Mundt
  */
 @ManagedBean(name = "mbClientes")
-@RequestScoped
+@SessionScoped
 public class MbClientes implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -30,6 +31,7 @@ public class MbClientes implements Serializable {
     private List<Clientes> clientes;
     private List<Cidades> cidades;
     private Cidades cidade = new Cidades();
+
     public MbClientes() {
     }
 
@@ -53,11 +55,6 @@ public class MbClientes implements Serializable {
     }
 
     public String addCliente() {
-        if (cliente.getCli_tipo() == "true") {
-            cliente.setCli_tipo("adm");
-        } else {
-            cliente.setCli_tipo("cli");
-        }
         if (cliente.getCli_codigo() == null || cliente.getCli_codigo() == 0) {
             insertCliente();
         } else {
