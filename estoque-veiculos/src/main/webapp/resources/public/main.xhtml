@@ -20,18 +20,20 @@
             <div id="imagem">
                 <a href="http://localhost:8080/estoque-veiculos"><img src="#{facesContext.externalContext.requestContextPath}/resources/images/Maserati2.jpg" width="250" height="150"/></a>
             </div>
-            <div id="logoff">
-                <!-- <br/>
-                 <h5><h:outputText value="KM AutoShow"/></h5>
-                 <br/>-->
-                <a href="#/j_spring_security_logout">
-                    <h4>LOGOFF</h4>
-                </a>
+            <div  id="logoff">
+  teste
             </div>
         </div>
         <div>
             <div id="menu"><!-- Menu ########################################## Menu-->
-                Categorias 
+                <h:form>  
+                    <p:dataTable id="idTabela" var="categoria" emptyMessage="Nenhum registro encontrado"
+                                 value="#{mbCategorias.categorias}" paginator="false">                       
+                        <p:column>
+                            <a href="#" class="categorias" >#{categoria.catNome}</a>                                                      
+                        </p:column>
+                    </p:dataTable>
+                </h:form> 
             </div>
             <div id="conteudo" class="conteudo">
                 <ui:insert name="conteudo">Conteudo</ui:insert>
