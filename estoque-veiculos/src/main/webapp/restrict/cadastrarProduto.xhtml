@@ -27,7 +27,6 @@
                                 </f:facet>
                                 <h:outputText value="#{produto.proNome}"/>
                             </p:column>
-
                             <p:column>
                                 <f:facet name="header">
                                     <h:outputText value="Descrição"/>
@@ -70,7 +69,6 @@
                                 </f:facet>
                                 <h:outputText value="#{produto.proObservacao}"/>
                             </p:column>
-
                             <!--Botões editar e excluir -->
                             <p:column>
                                 <f:facet name="header">
@@ -86,10 +84,8 @@
                                     <f:setPropertyActionListener target="#{mbProdutos.produto}"
                                                                  value="#{produto}"/>
                                 </p:commandButton>
-
                             </p:column>
                         </p:dataTable>
-
                     </h:form>
                 </p:tab>
                 <p:tab id="frm1" title="Cadastrar Produto">
@@ -131,8 +127,6 @@
                     </h:form>
                 </p:tab>
             </p:tabView>
-
         </p:fieldset>
     </ui:define>
-
 </ui:composition>
