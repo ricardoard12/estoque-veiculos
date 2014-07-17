@@ -53,7 +53,7 @@ public class CustomExceptionHandler extends ExceptionHandlerWrapper {
             // Aqui tentamos tratar a exeção
             try {
  
-//                // Aqui você poderia por exemploinstanciar as classes StringWriter e PrintWriter
+//                // Aqui você poderia por exemplo instanciar as classes StringWriter e PrintWriter
                 StringWriter stringWriter = new StringWriter();
            		PrintWriter printWriter = new PrintWriter(stringWriter);
        			exception.printStackTrace(printWriter);
@@ -78,7 +78,7 @@ public class CustomExceptionHandler extends ExceptionHandlerWrapper {
                     (FacesMessage.SEVERITY_INFO, "Você pode continuar usando o sistema normalmente!", ""));
  
                 // Seta a navegação para uma página padrão.
-                navigationHandler.handleNavigation(facesContext, null, "/restrict/home.faces");
+                navigationHandler.handleNavigation(facesContext, null, "/public/home.faces");
  
                 // Renderiza a pagina de erro e exibe as mensagens
                 facesContext.renderResponse();

@@ -50,13 +50,16 @@ public class MbFornecedores implements Serializable {
     }
 
     public String editFornecedor() {
-        return "/restrict/cadastrarFornecedor.faces";
+        return "/restrict/cadastrarFornecedor.faces#tbv1:frm1";
     }
 
     public String addFornecedor() {
-        if (fornecedor.getForCodigo() == null || fornecedor.getForCodigo() == 0) {
+        if ((null == fornecedor.getForCodigo()) || (fornecedor.getForCodigo() == 0)) {
             insertFornecedor();
+            System.out.println("INSERIU");
+            System.out.println("codigo" + fornecedor.getForCodigo());
         } else {
+            System.out.println("UPDATIOU");
             updateFornecedor();
         }
         limpaFornecedor();
@@ -71,6 +74,7 @@ public class MbFornecedores implements Serializable {
     }
 
     private void updateFornecedor() {
+        fornecedor.setCidades(cidade);
         fornecedoresDAO().update(fornecedor);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Fornecedor Atualizado com SUCESSO!", ""));

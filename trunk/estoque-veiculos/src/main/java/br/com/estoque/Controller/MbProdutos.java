@@ -14,7 +14,6 @@ import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
@@ -59,13 +58,13 @@ public class MbProdutos implements Serializable {
     private void insertProduto() {
         produtosDAO().save(produto);
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Produto Gravada com SUCESSO!", ""));
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Produto Gravado com SUCESSO!", ""));
     }
 
     private void updateProduto() {
         produtosDAO().update(produto);
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Produto Atualizada com SUCESSO!", ""));
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Produto Atualizado com SUCESSO!", ""));
     }
     public void deleteProduto() {
         produtosDAO().remove(produto);

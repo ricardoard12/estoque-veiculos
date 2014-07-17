@@ -13,14 +13,14 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 
 /**
  *
  * @author Rogério Koglin
  */
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class CidadeEstadoView implements Serializable {
 
     private Map<String, Map<String, String>> data = new HashMap<String, Map<String, String>>();
