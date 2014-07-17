@@ -1,0 +1,12 @@
+<div>
+                    <h:form id="formtable">
+                        <p:growl id="msg1"/>                        
+                        <h:outputLabel>Login.:</h:outputLabel>
+                        <h:inputText readonly="true" id="cliEmail" value="#{mbClientes.cliente.cli_email}"/> 
+                        <h:outputLabel>Senha.:</h:outputLabel>
+                        <h:inputText readonly="true" id="cliEmail" value="#{mbClientes.cliente.cli_senha}"/> 
+                        <p:commandButton value="Salvar" action="#{mbClientes.cliente.logar}" 
+                                                 image="ui-icons ui-icon-disk" update="this"/>
+    
+    
+</div>

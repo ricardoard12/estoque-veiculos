@@ -14,7 +14,6 @@ import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
@@ -51,7 +50,7 @@ public class MbClientes implements Serializable {
     }
 
     public String editCliente() {
-        return "/restrict/cadastrarCliente.faces";
+        return "/restrict/cadastrarCliente.faces#tbv1:frm1";
     }
 
     public String addCliente() {
@@ -65,11 +64,8 @@ public class MbClientes implements Serializable {
     }
 
     private void insertCliente() {
-        System.out.println("#######################################################3 cidfade" + cidade.getCid_codigo().toString());
         cliente.setCidades(cidade);
-        System.out.println("cliente_Cidade" + cliente.getCidades().getCid_codigo().toString());
         clientesDAO().save(cliente);
-
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Cliente Gravado com SUCESSO!", ""));
     }

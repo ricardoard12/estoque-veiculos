@@ -8,10 +8,10 @@
         <phase-listener>br.com.estoque.Util.PhaseListenerUtil</phase-listener>
     </lifecycle>
     
-  <!--  <factory>
+   <factory>
 	  <exception-handler-factory>
 	     br.com.estoque.Excecoes.CustomExceptionHandlerFactory
 	  </exception-handler-factory>
 	</factory>
--->
+
 </faces-config>
