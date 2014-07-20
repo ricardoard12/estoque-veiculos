@@ -22,8 +22,8 @@ import org.hibernate.annotations.ForeignKey;
  * @author Rogério Koglin
  */
 @Entity
-@Table(name = "vendas")
-public class Vendas implements Serializable {
+@Table(name = "venda")
+public class Venda implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -36,17 +36,17 @@ public class Vendas implements Serializable {
     @Column(name = "ven_data")
     private String venData;
 
-    @OneToMany(mappedBy = "vendas")
+    @OneToMany(mappedBy = "venda")
     @ForeignKey(name = "VendaItensVenda")
-    private List<ItensVenda> itensVenda;
+    private List<ItensVenda> itensVendas;
 
     @ManyToOne(optional = false)
     @ForeignKey(name = "vendaCliente")
     @JoinColumn(name = "ven_cli_codigo", referencedColumnName = "cli_codigo")
-    private Clientes clientes;
+    private Cliente cliente;
 
-    public Vendas() {
-        this.clientes = new Clientes();
+    public Venda() {
+        this.cliente = new Cliente();
     }
 
     public Integer getVenCod() {
@@ -73,20 +73,20 @@ public class Vendas implements Serializable {
         this.venData = venData;
     }
 
-    public List<ItensVenda> getItensVenda() {
-        return itensVenda;
+    public List<ItensVenda> getItensVendas() {
+        return itensVendas;
     }
 
-    public void setItensVenda(List<ItensVenda> itensVenda) {
-        this.itensVenda = itensVenda;
+    public void setItensVendas(List<ItensVenda> itensVendas) {
+        this.itensVendas = itensVendas;
     }
 
-    public Clientes clientes() {
-        return clientes;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setClientes(Clientes clientes) {
-        this.clientes = clientes;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override
@@ -104,7 +104,7 @@ public class Vendas implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Vendas other = (Vendas) obj;
+        final Venda other = (Venda) obj;
         if (this.venCod != other.venCod && (this.venCod == null || !this.venCod.equals(other.venCod))) {
             return false;
         }

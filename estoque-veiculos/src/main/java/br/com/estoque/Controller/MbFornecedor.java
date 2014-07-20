@@ -8,49 +8,49 @@ package br.com.estoque.Controller;
 
 import br.com.estoque.Model.DAO.HibernateDAO;
 import br.com.estoque.Model.DAO.InterfaceDAO;
-import br.com.estoque.Model.Entidades.Cidades;
-import br.com.estoque.Model.Entidades.Fornecedores;
+import br.com.estoque.Model.Entidades.Cidade;
+import br.com.estoque.Model.Entidades.Fornecedor;
 import br.com.estoque.Util.FacesContextUtil;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 /**
  *
  * @author Luciano E. Mundt
  */
-@ManagedBean(name = "mbFornecedores")
-@SessionScoped
-public class MbFornecedores implements Serializable {
+@ManagedBean(name = "mbFornecedor")
+@RequestScoped
+public class MbFornecedor implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private Fornecedores fornecedor = new Fornecedores();
-    private List<Fornecedores> fornecedores;
-    private Cidades cidade = new Cidades();
+    private Fornecedor fornecedor = new Fornecedor();
+    private List<Fornecedor> fornecedores;
+    private Cidade cidade;
 
-    public MbFornecedores() {
-
+    public MbFornecedor() {
+        this.cidade = new Cidade();
     }
 
-    private InterfaceDAO<Fornecedores> fornecedoresDAO() {
-        InterfaceDAO<Fornecedores> fornecedoresDAO = new HibernateDAO<Fornecedores>(Fornecedores.class, FacesContextUtil.getRequestSession());
+    private InterfaceDAO<Fornecedor> fornecedoresDAO() {
+        InterfaceDAO<Fornecedor> fornecedoresDAO = new HibernateDAO<Fornecedor>(Fornecedor.class, FacesContextUtil.getRequestSession());
         return fornecedoresDAO;
     }
-    private InterfaceDAO<Cidades> cidadesDAO() {
-        InterfaceDAO<Cidades> cidadesDAO = new HibernateDAO<Cidades>(Cidades.class, FacesContextUtil.getRequestSession());
+    private InterfaceDAO<Cidade> cidadesDAO() {
+        InterfaceDAO<Cidade> cidadesDAO = new HibernateDAO<Cidade>(Cidade.class, FacesContextUtil.getRequestSession());
         return cidadesDAO;
     }
     public String limpaFornecedor() {
-        fornecedor = new Fornecedores();
+        fornecedor = new Fornecedor();
+        cidade = new Cidade();
         return "/restrict/cadastrarFornecedor.faces";
     }
 
     public String editFornecedor() {
-        return "/restrict/cadastrarFornecedor.faces#tbv1:frm1";
+        return "/restrict/cadastrarFornecedor.faces";
     }
 
     public String addFornecedor() {
@@ -67,14 +67,14 @@ public class MbFornecedores implements Serializable {
     }
 
     private void insertFornecedor() {
-        fornecedor.setCidades(cidade);
+        fornecedor.setCidade(cidade);
         fornecedoresDAO().save(fornecedor);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Fornecedor Gravado com SUCESSO!", ""));
     }
 
     private void updateFornecedor() {
-        fornecedor.setCidades(cidade);
+        fornecedor.setCidade(cidade);
         fornecedoresDAO().update(fornecedor);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Fornecedor Atualizado com SUCESSO!", ""));
@@ -84,28 +84,28 @@ public class MbFornecedores implements Serializable {
     }
 
 //Gets e Seters
-    public Cidades getCidade() {
+    public Cidade getCidade() {
         return cidade;
     }
 
-    public void setCidade(Cidades cidade) {
+    public void setCidade(Cidade cidade) {
         this.cidade = cidade;
     }
 
-    public List<Fornecedores> getFornecedores() {
+    public List<Fornecedor> getFornecedores() {
         fornecedores = fornecedoresDAO().getEntities();
         return fornecedores;
     }
 
-    public void setFornecedores(List<Fornecedores> fornecedores) {
+    public void setFornecedores(List<Fornecedor> fornecedores) {
         this.fornecedores = fornecedores;
     }
 
-    public Fornecedores getFornecedor(){
+    public Fornecedor getFornecedor(){
         return fornecedor;
     }
 
-    public void setFornecedor(Fornecedores fornecedor) {
+    public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
     }
 }

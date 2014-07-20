@@ -23,8 +23,8 @@ import org.hibernate.annotations.ForeignKey;
  * @author Rogério Koglin
  */
 @Entity
-@Table(name = "fornecedores")
-public class Fornecedores implements Serializable {
+@Table(name = "fornecedor")
+public class Fornecedor implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -47,17 +47,17 @@ public class Fornecedores implements Serializable {
     @Column(name = "for_email", nullable = true, length = 50)
     private String forEmail;
 
-    @OneToMany(mappedBy = "fornecedores", fetch = FetchType.LAZY)
-    @ForeignKey(name = "FornecedorProduto")
-    private List<Fornecedores> fornecedores;
+    @OneToMany(mappedBy = "fornecedor", fetch = FetchType.LAZY)
+    @ForeignKey(name = "ProdutoFornecedor")
+    private List<Produto> produtos;
 
     @ManyToOne(optional = false)
-    @ForeignKey(name = "CidadesFornecedor")
+    @ForeignKey(name = "FornecedorCidade")
     @JoinColumn(name = "for_cid_codigo", referencedColumnName = "cid_codigo")
-    private Cidades cidades;
+    private Cidade cidade;
 
-    public Fornecedores() {
-        this.cidades = new Cidades();
+    public Fornecedor() {
+        this.cidade = new Cidade();
     }
 
     public Integer getForCodigo() {
@@ -124,20 +124,20 @@ public class Fornecedores implements Serializable {
         this.forEmail = forEmail;
     }
 
-    public Cidades getCidades() {
-        return cidades;
+    public List<Produto> getProdutos() {
+        return produtos;
     }
 
-    public void setCidades(Cidades cidades) {
-        this.cidades = cidades;
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
 
-    public List<Fornecedores> getFornecedores() {
-        return fornecedores;
+    public Cidade getCidade() {
+        return cidade;
     }
 
-    public void setFornecedores(List<Fornecedores> fornecedores) {
-        this.fornecedores = fornecedores;
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
     }
 
     @Override
@@ -155,7 +155,7 @@ public class Fornecedores implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Fornecedores other = (Fornecedores) obj;
+        final Fornecedor other = (Fornecedor) obj;
         if (this.forCodigo != other.forCodigo && (this.forCodigo == null || !this.forCodigo.equals(other.forCodigo))) {
             return false;
         }

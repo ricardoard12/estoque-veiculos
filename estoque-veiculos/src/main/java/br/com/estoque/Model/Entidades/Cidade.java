@@ -23,8 +23,8 @@ import org.hibernate.annotations.ForeignKey;
  * @author Rogério Koglin
  */
 @Entity
-@Table(name = "cidades")
-public class Cidades implements Serializable {
+@Table(name = "cidade")
+public class Cidade implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -35,21 +35,21 @@ public class Cidades implements Serializable {
     @Column(name = "cid_nome", nullable = false, length = 45)
     private String cid_nome;
 
-    @OneToMany(mappedBy = "cidades", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cidade", fetch = FetchType.LAZY)
     @ForeignKey(name = "ClienteCidade")
-    private List<Clientes> clientes;
+    private List<Cliente> clientes;
 
-    @OneToMany(mappedBy = "cidades", fetch = FetchType.LAZY)
-    @ForeignKey(name = "CidadesFornecedor")
-    private List<Fornecedores> fornecedores;
+    @OneToMany(mappedBy = "cidade", fetch = FetchType.LAZY)
+    @ForeignKey(name = "FornecedorCidade")
+    private List<Fornecedor> fornecedores;
 
     @ManyToOne(optional = false)
     @ForeignKey(name = "CidadeEstado")
     @JoinColumn(name = "cid_est_sigla", referencedColumnName = "est_sigla")
-    private Estados estados;
+    private Estado estado;
 
-    public Cidades() {
-        this.estados = new Estados();
+    public Cidade() {
+        this.estado = new Estado();
     }
 
     public Integer getCid_codigo() {
@@ -68,27 +68,27 @@ public class Cidades implements Serializable {
         this.cid_nome = cid_nome;
     }
 
-    public Estados getEstados() {
-        return estados;
+    public Estado getEstado() {
+        return estado;
     }
 
-    public void setEstados(Estados estados) {
-        this.estados = estados;
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 
-    public List<Clientes> getClientes() {
+    public List<Cliente> getClientes() {
         return clientes;
     }
 
-    public void setClientes(List<Clientes> clientes) {
+    public void setClientes(List<Cliente> clientes) {
         this.clientes = clientes;
     }
 
-    public List<Fornecedores> getFornecedores() {
+    public List<Fornecedor> getFornecedores() {
         return fornecedores;
     }
 
-    public void setFornecedores(List<Fornecedores> fornecedores) {
+    public void setFornecedores(List<Fornecedor> fornecedores) {
         this.fornecedores = fornecedores;
     }
 
@@ -107,7 +107,7 @@ public class Cidades implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Cidades other = (Cidades) obj;
+        final Cidade other = (Cidade) obj;
         if (this.cid_codigo != other.cid_codigo && (this.cid_codigo == null || !this.cid_codigo.equals(other.cid_codigo))) {
             return false;
         }

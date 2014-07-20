@@ -14,7 +14,7 @@
                 <p:tab title="Lista de Fornecedores">
                     <h:form id="formtable">
                         <p:growl id="msg1"/>
-                        <p:dataTable id="idTabela" var="fornecedor" value="#{mbFornecedores.fornecedores}"
+                        <p:dataTable id="idTabela" var="fornecedor" value="#{mbFornecedor.fornecedores}"
                                      paginator="true" rows="5" emptyMessage="Nenhum registro encontrado"
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink}
                                      {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -73,12 +73,12 @@
                                 </f:facet>
                                 <p:commandButton value="Editar" image="ui-icon ui-icon-pencil"
                                                  process="@this" update=":tbv1:formFornecedor" >
-                                    <f:setPropertyActionListener target="#{mbFornecedores.fornecedor}"
+                                    <f:setPropertyActionListener target="#{mbFornecedor.fornecedor}"
                                                                  value="#{fornecedor}"/>
                                 </p:commandButton>
-                                <p:commandButton value="Remover" action="#{mbFornecedores.deleteFornecedor}"
+                                <p:commandButton value="Remover" action="#{mbFornecedor.deleteFornecedor}"
                                                  image="ui-icon ui-icon-close" update="@form">
-                                    <f:setPropertyActionListener target="#{mbFornecedores.fornecedor}"
+                                    <f:setPropertyActionListener target="#{mbFornecedor.fornecedor}"
                                                                  value="#{fornecedor}"/>
                                 </p:commandButton>
 
@@ -92,18 +92,18 @@
                         <p:growl id="msg0"/>
                         <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid0">
                             <h:outputLabel>Código.:</h:outputLabel>
-                            <h:inputText readonly="true" id="forCodigo" value="#{mbFornecedores.fornecedor.forCodigo}"/> 
+                            <h:inputText readonly="true" id="forCodigo" value="#{mbFornecedor.fornecedor.forCodigo}"/> 
                             <h:outputLabel>Razão.: *</h:outputLabel>
-                            <h:inputText id="forRazao" value="#{mbFornecedores.fornecedor.forRazao}" required="true"
+                            <h:inputText id="forRazao" value="#{mbFornecedor.fornecedor.forRazao}" required="true"
                                          requiredMessage="A Razão não pode ser vazia!"/> 
                             <h:outputLabel>Nome Fantasia.: *</h:outputLabel>
-                            <h:inputText id="forNomeFantasia" value="#{mbFornecedores.fornecedor.forNomeFantasia}" required="true"
+                            <h:inputText id="forNomeFantasia" value="#{mbFornecedor.fornecedor.forNomeFantasia}" required="true"
                                          requiredMessage="O Nome Fantasia não pode ser vazio!"/>
                             <h:outputLabel>Email.: *</h:outputLabel>
-                            <h:inputText id="forEmail" value="#{mbFornecedores.fornecedor.forEmail}" required="true"
+                            <h:inputText id="forEmail" value="#{mbFornecedor.fornecedor.forEmail}" required="true"
                                          requiredMessage="O Email não pode ser vazio!"/>                         
                             <h:outputLabel>CNPJ.: *</h:outputLabel>
-                            <h:inputText id="forCnpj" value="#{mbFornecedores.fornecedor.forCnpj}" required="true"
+                            <h:inputText id="forCnpj" value="#{mbFornecedor.fornecedor.forCnpj}" required="true"
                                          requiredMessage="O CNPJ não pode ser vazio!"/>
                                                         <h:outputLabel>Estado.: *</h:outputLabel>
                             <p:selectOneMenu id="estado" value="#{cidadeEstadoView.estado}" style="width:160px">
@@ -112,22 +112,22 @@
                                 <f:selectItems value="#{cidadeEstadoView.estados}" />
                             </p:selectOneMenu>
                             <h:outputLabel>Cidade.: *</h:outputLabel>
-                            <p:selectOneMenu id="cidade" value="#{mbFornecedores.cidade.cid_codigo}" style="width:160px">
+                            <p:selectOneMenu id="cidade" value="#{mbFornecedor.cidade.cid_codigo}" style="width:160px">
                                 <f:selectItem itemLabel="Selecione Cidade" itemValue="" noSelectionOption="true" />
                                 <f:selectItems value="#{cidadeEstadoView.cidades}" />
                             </p:selectOneMenu>  
                             <h:outputLabel>CEP.: *</h:outputLabel>
-                            <h:inputText id="forCep" value="#{mbFornecedores.fornecedor.forCep}" required="true"
+                            <h:inputText id="forCep" value="#{mbFornecedor.fornecedor.forCep}" required="true"
                                          requiredMessage="O CEP não pode ser vazio!"/>                                                 
                             <h:outputLabel>Endereço.: *</h:outputLabel>
-                            <h:inputText id="forEndereco" value="#{mbFornecedores.fornecedor.forEndereco}" required="true"
+                            <h:inputText id="forEndereco" value="#{mbFornecedor.fornecedor.forEndereco}" required="true"
                                          requiredMessage="O Endereço não pode ser vazio!"/>
                             <h:outputLabel>Telefone.: </h:outputLabel>
-                            <h:inputText id="forTelefone" value="#{mbFornecedores.fornecedor.forTelefone}"/>                                         
+                            <h:inputText id="forTelefone" value="#{mbFornecedor.fornecedor.forTelefone}"/>                                         
                             <p:panel>                                
-                                <p:commandButton value="Salvar" action="#{mbFornecedores.addFornecedor}" 
+                                <p:commandButton value="Salvar" action="#{mbFornecedor.addFornecedor}" 
                                                  image="ui-icons ui-icon-disk" update="@form,:tbv1"/>
-                                <p:commandButton value="Cancelar" actionListener="#{mbFornecedores.limpaFornecedor}" 
+                                <p:commandButton value="Cancelar" actionListener="#{mbFornecedor.limpaFornecedor}" 
                                                  image="ui-icon ui-icon-close" update=":tbv1"/>
                             </p:panel>
                         </h:panelGrid>

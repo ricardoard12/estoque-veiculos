@@ -14,7 +14,7 @@
                 <p:tab title="Lista de Produtos">
                     <h:form id="formtable">
                         <p:growl id="msg1"/>
-                        <p:dataTable id="idTabela" var="produto" value="#{mbProdutos.produtos}"
+                        <p:dataTable id="idTabela" var="produto" value="#{mbProduto.produtos}"
                                      paginator="true" rows="5" emptyMessage="Nenhum registro encontrado"
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink}
                                      {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -76,12 +76,12 @@
                                 </f:facet>
                                 <p:commandButton value="Editar" image="ui-icon ui-icon-pencil"
                                                  process="@this" update=":tbv1:formProduto" >
-                                    <f:setPropertyActionListener target="#{mbProdutos.produto}"
+                                    <f:setPropertyActionListener target="#{mbProduto.produto}"
                                                                  value="#{produto}"/>
                                 </p:commandButton>
-                                <p:commandButton value="Remover" action="#{mbProdutos.deleteProduto}"
+                                <p:commandButton value="Remover" action="#{mbProduto.deleteProduto}"
                                                  image="ui-icon ui-icon-close" update="@form">
-                                    <f:setPropertyActionListener target="#{mbProdutos.produto}"
+                                    <f:setPropertyActionListener target="#{mbProduto.produto}"
                                                                  value="#{produto}"/>
                                 </p:commandButton>
                             </p:column>
@@ -93,34 +93,44 @@
                         <p:growl id="msg0"/>
                         <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid0">
                             <h:outputLabel>Código.:</h:outputLabel>
-                            <h:inputText readonly="true" id="proCodigo" value="#{mbProdutos.produto.proCodigo}"/> 
+                            <h:inputText readonly="true" id="proCodigo" value="#{mbProduto.produto.proCodigo}"/> 
                             <h:outputLabel>Nome.: *</h:outputLabel>
-                            <h:inputText id="proNome" value="#{mbProdutos.produto.proNome}" required="true"
+                            <h:inputText id="proNome" value="#{mbProduto.produto.proNome}" required="true"
                                          requiredMessage="O Nome não pode ser vazio!"/> 
                             <h:outputLabel>Descrição.: *</h:outputLabel>
-                            <h:inputText id="proDescrição" value="#{mbProdutos.produto.proDescricao}" required="true"
+                            <h:inputText id="proDescrição" value="#{mbProduto.produto.proDescricao}" required="true"
                                          requiredMessage="A Descrição não pode ser vazia!"/> 
+                            <h:outputLabel for="categoria">Categoria.: *</h:outputLabel>
+                            <p:selectOneMenu id="categoria" value="#{mbProduto.produto.categoria.catCodigo}" style="width:165px">
+                                <f:selectItem itemLabel="Selecione Categoria >>" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{bbCategoria.categorias}" var="categoria" itemValue="#{categoria.catCodigo}" itemLabel="#{categoria.catNome}" />
+                            </p:selectOneMenu>
+                                                        <h:outputLabel for="fornecedor">Fornecedor.: *</h:outputLabel>
+                                                        <p:selectOneMenu id="fornecedor" value="#{mbProduto.produto.fornecedor.forCodigo}" style="width:165px">
+                                <f:selectItem itemLabel="Selecione Fornecedor >>" itemValue="" noSelectionOption="true" />
+                                <f:selectItems value="#{bbFornecedor.fornecedores}" var="fornecedor" itemValue="#{fornecedor.forCodigo}" itemLabel="#{fornecedor.forRazao}" />
+                            </p:selectOneMenu>
                             <h:outputLabel>Marca.: *</h:outputLabel>
-                            <h:inputText id="proMarca" value="#{mbProdutos.produto.proMarca}" required="true"
+                            <h:inputText id="proMarca" value="#{mbProduto.produto.proMarca}" required="true"
                                          requiredMessage="A Marca não pode ser vazio!"/>
                             <h:outputLabel>Imagem.: *</h:outputLabel>
-                            <h:inputFile id="proImagem" value="#{mbProdutos.produto.proImg}" required="false"
+                            <h:inputText id="proImagem" value="#{mbProduto.produto.proImg}" required="false"
                                          requiredMessage="A Imagem não pode ser vazia!"/>
                             <h:outputLabel>Quantidade.:</h:outputLabel>
-                            <h:inputText id="proQtde" value="#{mbProdutos.produto.proQtd}" required="true"
+                            <h:inputText id="proQtde" value="#{mbProduto.produto.proQtd}" required="true"
                                          requiredMessage="A Quantidade não pode ser vazia!"/>
                             <h:outputLabel>Valor da Compra.:</h:outputLabel>
-                            <h:inputText id="proValorCompra" value="#{mbProdutos.produto.proValorCompra}" required="true"
+                            <h:inputText id="proValorCompra" value="#{mbProduto.produto.proValorCompra}" required="true"
                                          requiredMessage="O Valor da Compra não pode ser vazio!"/>                                                                  
                             <h:outputLabel>Valor da Venda.: *</h:outputLabel>
-                            <h:inputText id="proValorVenda" value="#{mbProdutos.produto.proValorVenda}" required="true"
+                            <h:inputText id="proValorVenda" value="#{mbProduto.produto.proValorVenda}" required="true"
                                          requiredMessage="O Valor da Venda não pode ser vazio!"/>
                             <h:outputLabel>Observação.:</h:outputLabel>
-                            <h:inputText id="proObservacao" value="#{mbProdutos.produto.proObservacao}"/>                                        
+                            <h:inputText id="proObservacao" value="#{mbProduto.produto.proObservacao}"/>                                        
                             <p:panel>                                
-                                <p:commandButton value="Salvar" action="#{mbProdutos.addProduto}" 
+                                <p:commandButton value="Salvar" action="#{mbProduto.addProduto}" 
                                                  image="ui-icons ui-icon-disk" update="@form,:tbv1"/>
-                                <p:commandButton value="Cancelar" actionListener="#{mbProdutos.limpaProduto}" 
+                                <p:commandButton value="Cancelar" actionListener="#{mbProduto.limpaProduto}" 
                                                  image="ui-icon ui-icon-close" update=":tbv1"/>
                             </p:panel>
                         </h:panelGrid>

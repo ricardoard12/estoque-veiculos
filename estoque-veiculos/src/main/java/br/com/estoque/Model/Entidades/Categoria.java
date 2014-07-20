@@ -21,8 +21,8 @@ import org.hibernate.annotations.ForeignKey;
  * @author Rogério Koglin
  */
 @Entity
-@Table(name = "categorias")
-public class Categorias implements Serializable {
+@Table(name = "categoria")
+public class Categoria implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,11 +33,11 @@ public class Categorias implements Serializable {
     @Column(name = "cat_nome", nullable = false, length = 40)
     private String catNome;
 
-    @OneToMany(mappedBy = "categorias", fetch = FetchType.LAZY)
-    @ForeignKey(name = "CategoriaProduto")
-    private List<Produtos> produtos;
+    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
+    @ForeignKey(name = "ProdutoCategoria")
+    private List<Produto> produtos;
 
-    public Categorias() {
+    public Categoria() {
     }
 
     public Integer getCatCodigo() {
@@ -56,11 +56,11 @@ public class Categorias implements Serializable {
         this.catNome = catNome;
     }
 
-    public List<Produtos> getProdutos() {
+    public List<Produto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(List<Produtos> produtos) {
+    public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
     }
 
@@ -79,7 +79,7 @@ public class Categorias implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Categorias other = (Categorias) obj;
+        final Categoria other = (Categoria) obj;
         if (this.catCodigo != other.catCodigo && (this.catCodigo == null || !this.catCodigo.equals(other.catCodigo))) {
             return false;
         }

@@ -7,8 +7,8 @@ package br.com.estoque.Controller;
 
 import br.com.estoque.Model.DAO.HibernateDAO;
 import br.com.estoque.Model.DAO.InterfaceDAO;
-import br.com.estoque.Model.Entidades.Cidades;
-import br.com.estoque.Model.Entidades.Estados;
+import br.com.estoque.Model.Entidades.Cidade;
+import br.com.estoque.Model.Entidades.Estado;
 import br.com.estoque.Util.FacesContextUtil;
 import java.io.Serializable;
 import java.util.List;
@@ -21,30 +21,30 @@ import javax.faces.context.FacesContext;
  *
  * @author Luciano E. Mundt
  */
-@ManagedBean(name = "mbCidades")
+@ManagedBean(name = "mbCidade")
 @SessionScoped
-public class MbCidades implements Serializable {
+public class MbCidade implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private Cidades cidade = new Cidades();
-    private List<Cidades> cidades;
-    private List<Estados> estados;
+    private Cidade cidade = new Cidade();
+    private List<Cidade> cidades;
+    private List<Estado> estados;
 
-    public MbCidades() {
+    public MbCidade() {
     }
 
-    private InterfaceDAO<Cidades> cidadesDAO() {
-        InterfaceDAO<Cidades> cidadesDAO = new HibernateDAO<Cidades>(Cidades.class, FacesContextUtil.getRequestSession());
+    private InterfaceDAO<Cidade> cidadesDAO() {
+        InterfaceDAO<Cidade> cidadesDAO = new HibernateDAO<Cidade>(Cidade.class, FacesContextUtil.getRequestSession());
         return cidadesDAO;
     }
 
-    private InterfaceDAO<Estados> EstadosDAO() {
-        InterfaceDAO<Estados> EstadosDAO = new HibernateDAO<Estados>(Estados.class, FacesContextUtil.getRequestSession());
+    private InterfaceDAO<Estado> EstadosDAO() {
+        InterfaceDAO<Estado> EstadosDAO = new HibernateDAO<Estado>(Estado.class, FacesContextUtil.getRequestSession());
         return EstadosDAO;
     }
 
     public String limpaCidade() {
-        cidade = new Cidades();
+        cidade = new Cidade();
         return "/restrict/cadastrarCidade.faces";
     }
 
@@ -79,28 +79,28 @@ public class MbCidades implements Serializable {
     }
 //Gets e Seters
 
-    public List<Cidades> getCidades() {
+    public List<Cidade> getCidades() {
         cidades = cidadesDAO().getEntities();
         return cidades;
     }
 
-    public void setCidades(List<Cidades> cidades) {
+    public void setCidades(List<Cidade> cidades) {
         this.cidades = cidades;
     }
 
-    public Cidades getCidade() {
+    public Cidade getCidade() {
         return cidade;
     }
 
-    public void setCidade(Cidades cidade) {
+    public void setCidade(Cidade cidade) {
         this.cidade = cidade;
     }
 
-    public List<Estados> getEstados() {
+    public List<Estado> getEstados() {
         return estados;
     }
 
-    public void setEstados(List<Estados> estados) {
+    public void setEstados(List<Estado> estados) {
         this.estados = estados;
     }
 

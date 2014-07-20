@@ -23,8 +23,8 @@ import org.hibernate.annotations.ForeignKey;
  * @author Rogério Koglin
  */
 @Entity
-@Table(name = "clientes")
-public class Clientes implements Serializable {
+@Table(name = "cliente")
+public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -47,17 +47,17 @@ public class Clientes implements Serializable {
     @Column(name = "cli_senha", nullable = false, length = 45)
     private String cli_senha;
 
-    @OneToMany(mappedBy = "clientes", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
     @ForeignKey(name = "vendaCliente")
-    private List<Clientes> clientes;
+    private List<Venda> vendas;
 
     @ManyToOne(optional = false)
     @ForeignKey(name = "ClienteCidade")
     @JoinColumn(name = "cli_cid_codigo", referencedColumnName = "cid_codigo")
-    private Cidades cidades;
+    private Cidade cidade;
 
-    public Clientes() {
-        this.cidades = new Cidades();
+    public Cliente() {
+        this.cidade = new Cidade();
     }
 
     public Integer getCli_codigo() {
@@ -124,20 +124,20 @@ public class Clientes implements Serializable {
         this.cli_email = cli_email;
     }
 
-    public List<Clientes> getClientes() {
-        return clientes;
+    public List<Venda> getVendas() {
+        return vendas;
     }
 
-    public void setClientes(List<Clientes> clientes) {
-        this.clientes = clientes;
+    public void setVendas(List<Venda> vendas) {
+        this.vendas = vendas;
     }
 
-    public Cidades getCidades() {
-        return cidades;
+    public Cidade getCidade() {
+        return cidade;
     }
 
-    public void setCidades(Cidades cidades) {
-        this.cidades = cidades;
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
     }
 
     @Override
@@ -155,7 +155,7 @@ public class Clientes implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Clientes other = (Clientes) obj;
+        final Cliente other = (Cliente) obj;
         if (this.cli_codigo != other.cli_codigo && (this.cli_codigo == null || !this.cli_codigo.equals(other.cli_codigo))) {
             return false;
         }
