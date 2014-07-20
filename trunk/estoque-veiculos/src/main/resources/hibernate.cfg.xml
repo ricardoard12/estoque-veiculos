@@ -21,13 +21,13 @@
     <property name="c3p0.max_statements">80</property>
     <property name="c3p0.idle_test_period">300</property>
     <!-- LISTA DE ENTIDADES -->
-    <mapping class="br.com.estoque.Model.Entidades.Categorias"/>
-    <mapping class="br.com.estoque.Model.Entidades.Estados"/>
-    <mapping class="br.com.estoque.Model.Entidades.Cidades"/>
-    <mapping class="br.com.estoque.Model.Entidades.Clientes"/>
-    <mapping class="br.com.estoque.Model.Entidades.Fornecedores"/>
-    <mapping class="br.com.estoque.Model.Entidades.Produtos"/>
-    <mapping class="br.com.estoque.Model.Entidades.Vendas"/>
+    <mapping class="br.com.estoque.Model.Entidades.Categoria"/>
+    <mapping class="br.com.estoque.Model.Entidades.Estado"/>
+    <mapping class="br.com.estoque.Model.Entidades.Cidade"/>
+    <mapping class="br.com.estoque.Model.Entidades.Cliente"/>
+    <mapping class="br.com.estoque.Model.Entidades.Fornecedor"/>
+    <mapping class="br.com.estoque.Model.Entidades.Produto"/>
+    <mapping class="br.com.estoque.Model.Entidades.Venda"/>
     <mapping class="br.com.estoque.Model.Entidades.ItensVenda"/>
   </session-factory>
 </hibernate-configuration>

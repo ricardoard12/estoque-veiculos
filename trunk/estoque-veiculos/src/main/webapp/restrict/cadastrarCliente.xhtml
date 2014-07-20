@@ -15,7 +15,7 @@
                 <p:tab title="Lista de Clientes">
                     <h:form id="formtable">
                         <p:growl id="msg1"/>
-                        <p:dataTable id="idTabela" var="cliente" value="#{mbClientes.clientes}"
+                        <p:dataTable id="idTabela" var="cliente" value="#{mbCliente.clientes}"
                                      paginator="true" rows="5" emptyMessage="Nenhum registro encontrado"
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink}
                                      {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -63,7 +63,7 @@
                                 <f:facet name="header">
                                     <h:outputText value="Cidade"/>
                                 </f:facet>
-                                <h:outputText value="#{cliente.cidades.cid_nome}"/>
+                                <h:outputText value="#{cliente.cidade.cid_nome}"/>
                             </p:column>
 
                             <!--Botões editar e excluir -->
@@ -73,12 +73,12 @@
                                 </f:facet>
                                 <p:commandButton value="Editar" image="ui-icon ui-icon-pencil"
                                                  process="@this" update=":tbv1:formCliente" >
-                                    <f:setPropertyActionListener target="#{mbClientes.cliente}"
+                                    <f:setPropertyActionListener target="#{mbCliente.cliente.isCli_tipo}"
                                                                  value="#{cliente}"/>
                                 </p:commandButton>
-                                <p:commandButton value="Remover" action="#{mbClientes.deleteCliente}"
+                                <p:commandButton value="Remover" action="#{mbCliente.deleteCliente}"
                                                  image="ui-icon ui-icon-close" update="@form">
-                                    <f:setPropertyActionListener target="#{mbClientes.cliente}"
+                                    <f:setPropertyActionListener target="#{mbCliente.cliente}"
                                                                  value="#{cliente}"/>
                                 </p:commandButton>
 
@@ -92,42 +92,41 @@
                         <p:growl id="msg0"/>
                         <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid0">
                             <h:outputLabel>Código.:</h:outputLabel>
-                            <h:inputText readonly="true" id="cliCodigo" value="#{mbClientes.cliente.cli_codigo}"/> 
+                            <h:inputText readonly="true" id="cliCodigo" value="#{mbCliente.cliente.cli_codigo}"/> 
                             <h:outputLabel>Nome.: *</h:outputLabel>
-                            <h:inputText id="cliNome" value="#{mbClientes.cliente.cli_nome}" required="true"
+                            <h:inputText id="cliNome" value="#{mbCliente.cliente.cli_nome}" required="true"
                                          requiredMessage="O Nome não pode ser vazio!"/> 
                             <h:outputLabel>Email.: *</h:outputLabel>
-                            <h:inputText id="cliEmail" value="#{mbClientes.cliente.cli_email}" required="true"
+                            <h:inputText id="cliEmail" value="#{mbCliente.cliente.cli_email}" required="true"
                                          requiredMessage="O Email não pode ser vazio!"/>
                             <h:outputLabel>Senha.: *</h:outputLabel>
-                            <h:inputText id="cliSenha" value="#{mbClientes.cliente.cli_senha}" required="true"
+                            <h:inputText id="cliSenha" value="#{mbCliente.cliente.cli_senha}" required="true"
                                          requiredMessage="A Senha não pode ser vazio!"/>
                             <h:outputLabel>Administrador.:</h:outputLabel>
-                            <h:selectBooleanCheckbox rendered="true"  value="#{mbClientes.cliente.isCli_tipo}" />
-                            
+                            <h:selectBooleanCheckbox value="false" /> 
                             <h:outputLabel>Cpf.: *</h:outputLabel>
-                            <h:inputText id="cliCpf" value="#{mbClientes.cliente.cli_cpf}" required="true"
+                            <h:inputText id="cliCpf" value="#{mbCliente.cliente.cli_cpf}" required="true"
                                          requiredMessage="O CPF não pode ser vazio!"/>
                             <h:outputLabel>Estado.: *</h:outputLabel>
-                            <p:selectOneMenu id="estado" value="#{cidadeEstadoView.estado}" style="width:160px">
+                            <p:selectOneMenu id="estado" value="#{cidadeEstadoView.estado}" style="width:165px">
                                 <p:ajax listener="#{cidadeEstadoView.onEstadoChange}" update="cidade" />
-                                <f:selectItem itemLabel="Selecione Estado" itemValue="" noSelectionOption="true" />
+                                <f:selectItem itemLabel="Selecione Estado >>" itemValue="" noSelectionOption="true" />
                                 <f:selectItems value="#{cidadeEstadoView.estados}" />
                             </p:selectOneMenu>
                             <h:outputLabel>Cidade.: *</h:outputLabel>
-                            <p:selectOneMenu id="cidade" value="#{mbClientes.cidade.cid_codigo}" style="width:160px">
-                                <f:selectItem itemLabel="Selecione Cidade" itemValue="" noSelectionOption="true" />
+                            <p:selectOneMenu id="cidade" value="#{mbCliente.cliente.cidade.cid_codigo}" style="width:165px">
+                                <f:selectItem itemLabel="Selecione Cidade >>" itemValue="" noSelectionOption="true" />
                                 <f:selectItems value="#{cidadeEstadoView.cidades}" />
                             </p:selectOneMenu>                                              
                             <h:outputLabel>Endereço.: *</h:outputLabel>
-                            <h:inputText id="cliEndereco" value="#{mbClientes.cliente.cli_endereco}" required="true"
+                            <h:inputText id="cliEndereco" value="#{mbCliente.cliente.cli_endereco}" required="true"
                                          requiredMessage="O Endereço não pode ser vazio!"/>
                             <h:outputLabel>Telefone.:</h:outputLabel>
-                            <h:inputText id="cliTelefone" value="#{mbClientes.cliente.cli_telefone}"/>                                         
+                            <h:inputText id="cliTelefone" value="#{mbCliente.cliente.cli_telefone}"/>                                         
                             <p:panel>                                
-                                <p:commandButton value="Salvar" action="#{mbClientes.addCliente}" 
+                                <p:commandButton value="Salvar" action="#{mbCliente.addCliente}" 
                                                  image="ui-icons ui-icon-disk" update="@form,:tbv1"/>
-                                <p:commandButton value="Cancelar" actionListener="#{mbClientes.limpaCliente}" 
+                                <p:commandButton value="Cancelar" actionListener="#{mbCliente.limpaCliente}" 
                                                  image="ui-icon ui-icon-close" update=":tbv1"/>
                             </p:panel>
                         </h:panelGrid>

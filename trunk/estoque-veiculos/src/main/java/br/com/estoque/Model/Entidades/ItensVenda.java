@@ -37,18 +37,18 @@ public class ItensVenda implements Serializable {
     private Double itvSubTotal;
 
     @ManyToOne(optional = false)
-    @ForeignKey(name = "ProdutoItensVenda")
+    @ForeignKey(name = "ItensVendaProduto")
     @JoinColumn(name = "itv_pro_codigo", referencedColumnName = "pro_codigo")
-    private Produtos produtos;
+    private Produto produto;
 
     @ManyToOne(optional = false)
     @ForeignKey(name = "VendaItensVenda")
     @JoinColumn(name = "itv_ven_codigo", referencedColumnName = "ven_cod")
-    private Vendas vendas;
+    private Venda venda;
 
     public ItensVenda() {
-        this.vendas = new Vendas();
-        this.produtos = new Produtos();
+        this.venda = new Venda();
+        this.produto = new Produto();
     }
 
     public Integer getItvCodigo() {
@@ -83,20 +83,20 @@ public class ItensVenda implements Serializable {
         this.itvSubTotal = itvSubTotal;
     }
 
-    public Produtos getProdutos() {
-        return produtos;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setProdutos(Produtos produtos) {
-        this.produtos = produtos;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
-    public Vendas getVendas() {
-        return vendas;
+    public Venda getVenda() {
+        return venda;
     }
 
-    public void setVendas(Vendas vendas) {
-        this.vendas = vendas;
+    public void setVenda(Venda venda) {
+        this.venda = venda;
     }
 
     @Override

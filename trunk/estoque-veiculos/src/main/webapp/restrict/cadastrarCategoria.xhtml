@@ -15,7 +15,7 @@
                 <p:tab title="Lista de Categorias">
                     <h:form id="formtable">
                         <p:growl id="msg1"/>
-                        <p:dataTable id="idTabela" var="categoria" value="#{mbCategorias.categorias}"
+                        <p:dataTable id="idTabela" var="categoria" value="#{mbCategoria.categorias}"
                                      paginator="true" rows="5" emptyMessage="Nenhum registro encontrado"
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink}
                                      {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -35,12 +35,12 @@
                                 </f:facet>
                                 <p:commandButton value="Editar" image="ui-icon ui-icon-pencil"
                                                  process="@this" update=":tbv1:formCategoria" >
-                                    <f:setPropertyActionListener target="#{mbCategorias.categoria}"
+                                    <f:setPropertyActionListener target="#{mbCategoria.categoria}"
                                                                  value="#{categoria}"/>
                                 </p:commandButton>
-                                <p:commandButton value="Remover" action="#{mbCategorias.deleteCategoria}"
+                                <p:commandButton value="Remover" action="#{mbCategoria.deleteCategoria}"
                                                  image="ui-icon ui-icon-close" update="@form">
-                                    <f:setPropertyActionListener target="#{mbCategorias.categoria}"
+                                    <f:setPropertyActionListener target="#{mbCategoria.categoria}"
                                                                  value="#{categoria}"/>
                                 </p:commandButton>
 
@@ -54,14 +54,14 @@
                         <p:growl id="msg0"/>
                         <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid" id="grid0">
                             <h:outputLabel>Código.:</h:outputLabel>
-                            <h:inputText readonly="true" id="catCodigo" value="#{mbCategorias.categoria.catCodigo}"/> 
+                            <h:inputText readonly="true" id="catCodigo" value="#{mbCategoria.categoria.catCodigo}"/> 
                             <h:outputLabel>Nome.: *</h:outputLabel>
-                            <h:inputText id="catNome" value="#{mbCategorias.categoria.catNome}" required="true"
+                            <h:inputText id="catNome" value="#{mbCategoria.categoria.catNome}" required="true"
                                          requiredMessage="O Nome não pode ser vazio!"/> 
                             <p:panel>
-                                <p:commandButton value="Salvar" action="#{mbCategorias.addCategoria}" 
+                                <p:commandButton value="Salvar" action="#{mbCategoria.addCategoria}" 
                                                  image="ui-icons ui-icon-disk" update="@form,:tbv1"/>
-                                <p:commandButton value="Cancelar" actionListener="#{mbCategorias.limpaCategoria}" 
+                                <p:commandButton value="Cancelar" actionListener="#{mbCategoria.limpaCategoria}" 
                                                  image="ui-icon ui-icon-close" update=":tbv1"/>
                             </p:panel>
                         </h:panelGrid>

@@ -7,13 +7,12 @@ package br.com.estoque.Controller;
 
 import br.com.estoque.Model.DAO.HibernateDAO;
 import br.com.estoque.Model.DAO.InterfaceDAO;
-import br.com.estoque.Model.Entidades.Estados;
+import br.com.estoque.Model.Entidades.Estado;
 import br.com.estoque.Util.FacesContextUtil;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
@@ -21,24 +20,24 @@ import javax.faces.context.FacesContext;
  *
  * @author Luciano E. Mundt
  */
-@ManagedBean(name = "mbEstados")
+@ManagedBean(name = "mbEstado")
 @SessionScoped
-public class MbEstados implements Serializable {
+public class MbEstado implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private Estados Estado = new Estados();
-    private List<Estados> Estados;
+    private Estado Estado = new Estado();
+    private List<Estado> Estados;
 
-    public MbEstados() {
+    public MbEstado() {
     }
 
-    private InterfaceDAO<Estados> EstadosDAO() {
-        InterfaceDAO<Estados> EstadosDAO = new HibernateDAO<Estados>(Estados.class, FacesContextUtil.getRequestSession());
+    private InterfaceDAO<Estado> EstadosDAO() {
+        InterfaceDAO<Estado> EstadosDAO = new HibernateDAO<Estado>(Estado.class, FacesContextUtil.getRequestSession());
         return EstadosDAO;
     }
 
     public String limpaEstado() {
-        Estado = new Estados();
+        Estado = new Estado();
         return "/restrict/cadastrarEstado.faces";
     }
 
@@ -72,20 +71,20 @@ public class MbEstados implements Serializable {
     }
 //Gets e Seters
 
-    public List<Estados> getEstados() {
+    public List<Estado> getEstados() {
         Estados = EstadosDAO().getEntities();
         return Estados;
     }
 
-    public void setEstados(List<Estados> Estados) {
+    public void setEstados(List<Estado> Estados) {
         this.Estados = Estados;
     }
 
-    public Estados getEstado() {
+    public Estado getEstado() {
         return Estado;
     }
 
-    public void setEstado(Estados Estado) {
+    public void setEstado(Estado Estado) {
         this.Estado = Estado;
     }
 }

@@ -23,8 +23,8 @@ import org.hibernate.annotations.ForeignKey;
  * @author Rogério Koglin
  */
 @Entity
-@Table(name = "produtos")
-public class Produtos implements Serializable {
+@Table(name = "produto")
+public class Produto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -49,23 +49,23 @@ public class Produtos implements Serializable {
     @Column(name = "pro_observacao", nullable = true, length = 60)
     private String proObservacao;
 
-    @OneToMany(mappedBy = "produtos", fetch = FetchType.LAZY)
-    @ForeignKey(name = "ProdutoItensVenda")
-    private List<ItensVenda> itensVenda;
+    @OneToMany(mappedBy = "produto", fetch = FetchType.LAZY)
+    @ForeignKey(name = "ItensVendaProduto")
+    private List<ItensVenda> itensVendas;
 
     @ManyToOne(optional = false)
-    @ForeignKey(name = "FornecedorProduto")
+    @ForeignKey(name = "ProdutosFornecedor")
     @JoinColumn(name = "pro_for_codigo", referencedColumnName = "for_codigo")
-    private Fornecedores fornecedores;
+    private Fornecedor fornecedor;
 
     @ManyToOne(optional = false)
-    @ForeignKey(name = "CategoriaProduto")
+    @ForeignKey(name = "ProdutoCategoria")
     @JoinColumn(name = "pro_cat_codigo", referencedColumnName = "cat_codigo")
-    private Categorias categorias;
+    private Categoria categoria;
 
-    public Produtos() {
-        this.fornecedores = new Fornecedores();
-        this.categorias = new Categorias();
+    public Produto() {
+        this.fornecedor = new Fornecedor();
+        this.categoria = new Categoria();
     }
 
     public Integer getProCodigo() {
@@ -140,28 +140,28 @@ public class Produtos implements Serializable {
         this.proObservacao = proObservacao;
     }
 
-    public List<ItensVenda> getItensVenda() {
-        return itensVenda;
+    public Fornecedor getFornecedor() {
+        return fornecedor;
     }
 
-    public void setItensVenda(List<ItensVenda> itensVenda) {
-        this.itensVenda = itensVenda;
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
 
-    public Fornecedores getFornecedores() {
-        return fornecedores;
+    public List<ItensVenda> getItensVendas() {
+        return itensVendas;
     }
 
-    public void setFornecedores(Fornecedores fornecedores) {
-        this.fornecedores = fornecedores;
+    public void setItensVendas(List<ItensVenda> itensVendas) {
+        this.itensVendas = itensVendas;
     }
 
-    public Categorias getCategorias() {
-        return categorias;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setCategorias(Categorias categorias) {
-        this.categorias = categorias;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     @Override
@@ -179,7 +179,7 @@ public class Produtos implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Produtos other = (Produtos) obj;
+        final Produto other = (Produto) obj;
         if (this.proCodigo != other.proCodigo && (this.proCodigo == null || !this.proCodigo.equals(other.proCodigo))) {
             return false;
         }

@@ -20,8 +20,8 @@ import org.hibernate.annotations.ForeignKey;
  * @author Rogério Koglin
  */
 @Entity
-@Table(name = "estados")
-public class Estados implements Serializable{
+@Table(name = "estado")
+public class Estado implements Serializable {
 private static final long serialVersionUID = 1L;
 
     @Id
@@ -30,11 +30,11 @@ private static final long serialVersionUID = 1L;
     @Column(name="est_nome",nullable = false,length = 40)
     private String est_nome;
     
-    @OneToMany(mappedBy = "estados",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "estado", fetch = FetchType.LAZY)
     @ForeignKey(name="CidadeEstado")
-    private List<Cidades> cidades;
+    private List<Cidade> cidades;
     
-    public Estados() {
+    public Estado() {
     }
 
     public String getEst_sigla() {
@@ -53,11 +53,11 @@ private static final long serialVersionUID = 1L;
         this.est_nome = est_nome;
     }
 
-    public List<Cidades> getCidades() {
+    public List<Cidade> getCidades() {
         return cidades;
     }
 
-    public void setCidades(List<Cidades> cidades) {
+    public void setCidades(List<Cidade> cidades) {
         this.cidades = cidades;
     }
 
@@ -76,7 +76,7 @@ private static final long serialVersionUID = 1L;
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Estados other = (Estados) obj;
+        final Estado other = (Estado) obj;
         if (this.est_sigla != other.est_sigla) {
             return false;
         }

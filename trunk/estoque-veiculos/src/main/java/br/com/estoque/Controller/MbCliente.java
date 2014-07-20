@@ -7,50 +7,51 @@ package br.com.estoque.Controller;
 
 import br.com.estoque.Model.DAO.HibernateDAO;
 import br.com.estoque.Model.DAO.InterfaceDAO;
-import br.com.estoque.Model.Entidades.Cidades;
-import br.com.estoque.Model.Entidades.Clientes;
+import br.com.estoque.Model.Entidades.Cidade;
+import br.com.estoque.Model.Entidades.Cliente;
 import br.com.estoque.Util.FacesContextUtil;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 /**
  *
  * @author Luciano E. Mundt
  */
-@ManagedBean(name = "mbClientes")
-@SessionScoped
-public class MbClientes implements Serializable {
+@ManagedBean(name = "mbCliente")
+@RequestScoped
+public class MbCliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private Clientes cliente = new Clientes();
-    private List<Clientes> clientes;
-    private List<Cidades> cidades;
-    private Cidades cidade = new Cidades();
+    private Cliente cliente = new Cliente();
+    private List<Cliente> clientes;
+    private Cidade cidade = new Cidade();
+    private List<Cidade> cidades;
 
-    public MbClientes() {
+    public MbCliente() {
     }
 
-    private InterfaceDAO<Clientes> clientesDAO() {
-        InterfaceDAO<Clientes> clientesDAO = new HibernateDAO<Clientes>(Clientes.class, FacesContextUtil.getRequestSession());
+    private InterfaceDAO<Cliente> clientesDAO() {
+        InterfaceDAO<Cliente> clientesDAO = new HibernateDAO<Cliente>(Cliente.class, FacesContextUtil.getRequestSession());
         return clientesDAO;
     }
 
-    private InterfaceDAO<Cidades> cidadesDAO() {
-        InterfaceDAO<Cidades> cidadesDAO = new HibernateDAO<Cidades>(Cidades.class, FacesContextUtil.getRequestSession());
+    private InterfaceDAO<Cidade> cidadesDAO() {
+        InterfaceDAO<Cidade> cidadesDAO = new HibernateDAO<Cidade>(Cidade.class, FacesContextUtil.getRequestSession());
         return cidadesDAO;
     }
 
     public String limpaCliente() {
-        cliente = new Clientes();
+        cliente = new Cliente();
+        cidade = new Cidade();
         return "/restrict/cadastrarCliente.faces";
     }
 
     public String editCliente() {
-        return "/restrict/cadastrarCliente.faces#tbv1:frm1";
+        return "/restrict/cadastrarCliente.faces";
     }
 
     public String addCliente() {
@@ -64,13 +65,14 @@ public class MbClientes implements Serializable {
     }
 
     private void insertCliente() {
-        cliente.setCidades(cidade);
+        cliente.setCidade(cidade);
         clientesDAO().save(cliente);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Cliente Gravado com SUCESSO!", ""));
     }
 
     private void updateCliente() {
+        cliente.setCidade(cidade);
         clientesDAO().update(cliente);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Cliente Atualizado com SUCESSO!", ""));
@@ -81,36 +83,36 @@ public class MbClientes implements Serializable {
     }
 //Gets e Seters
 
-    public List<Clientes> getClientes() {
+    public List<Cliente> getClientes() {
         clientes = clientesDAO().getEntities();
         return clientes;
     }
 
-    public void setClientes(List<Clientes> clientes) {
+    public void setClientes(List<Cliente> clientes) {
         this.clientes = clientes;
     }
 
-    public Clientes getCliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
-    public void setCliente(Clientes cliente) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
-    public List<Cidades> getCidades() {
+    public List<Cidade> getCidades() {
         return cidades;
     }
 
-    public void setCidades(List<Cidades> cidades) {
+    public void setCidades(List<Cidade> cidades) {
         this.cidades = cidades;
     }
 
-    public Cidades getCidade() {
+    public Cidade getCidade() {
         return cidade;
     }
 
-    public void setCidade(Cidades cidade) {
+    public void setCidade(Cidade cidade) {
         this.cidade = cidade;
     }
 

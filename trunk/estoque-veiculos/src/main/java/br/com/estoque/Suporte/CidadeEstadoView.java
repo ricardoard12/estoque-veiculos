@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.estoque.Controller;
+package br.com.estoque.Suporte;
 
-import br.com.estoque.Model.Entidades.Cidades;
-import br.com.estoque.Model.Entidades.Estados;
+import br.com.estoque.Controller.MbCidade;
+import br.com.estoque.Controller.MbEstado;
+import br.com.estoque.Model.Entidades.Cidade;
+import br.com.estoque.Model.Entidades.Estado;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -28,31 +30,38 @@ public class CidadeEstadoView implements Serializable {
     private String cidade;
     private Map<String, String> estados;
     private Map<String, String> cidades;
-    private List<Estados> estadosList;
-    private List<Cidades> cidadesList;
+    private List<Estado> estadosList;
+    private List<Cidade> cidadesList;
 
     @PostConstruct
     public void init() {
 
         estados = new HashMap<String, String>();
-        estadosList = new MbEstados().getEstados();
-        cidadesList = new MbCidades().getCidades();
-
+        estadosList = new MbEstado().getEstados();
+        cidadesList = new MbCidade().getCidades();
+        //popula o mapa de estados
         for (int i = 0; i < estadosList.size(); i++) {
             estados.put(estadosList.get(i).getEst_nome(), estadosList.get(i).getEst_sigla());
         }
-        Map<String, String> map = new HashMap<String, String>();
-        String estadoOLD="";
+        Map<String, String> map = null;
+        String estadoAUX = "";
         for (int i = 0; i < cidadesList.size(); i++) {
+            //se for a primeira cria o mapa e define o estado
             if (i == 0) {
                 map = new HashMap<String, String>();
+                estadoAUX = cidadesList.get(i).getEstado().getEst_sigla();
             }
-            map.put(cidadesList.get(i).getCid_nome(), cidadesList.get(i).getCid_codigo().toString());
-
-            if (!estadoOLD.equals(cidadesList.get(i).getEstados().getEst_sigla())) {
-                estadoOLD = cidadesList.get(i).getEstados().getEst_sigla();
-                data.put(cidadesList.get(i).getEstados().getEst_sigla(), map);
+            //se o estado mudou salva o anterior e cria um novo map
+            if (!estadoAUX.equals(cidadesList.get(i).getEstado().getEst_sigla())) {
+                estadoAUX = cidadesList.get(i).getEstado().getEst_sigla();
+                data.put(cidadesList.get(i - 1).getEstado().getEst_sigla(), map);
                 map = new HashMap<String, String>();
+            }
+            //adiciona cidades ao map
+            map.put(cidadesList.get(i).getCid_nome(), cidadesList.get(i).getCid_codigo().toString());
+            //se for a ultima linha salva os dados antes de sair do laço
+            if (i == (cidadesList.size() - 1)) {
+                data.put(cidadesList.get(i).getEstado().getEst_sigla(), map);
             }
         }
     }

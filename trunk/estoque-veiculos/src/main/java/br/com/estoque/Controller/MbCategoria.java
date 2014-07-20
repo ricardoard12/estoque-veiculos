@@ -8,7 +8,7 @@ package br.com.estoque.Controller;
 
 import br.com.estoque.Model.DAO.HibernateDAO;
 import br.com.estoque.Model.DAO.InterfaceDAO;
-import br.com.estoque.Model.Entidades.Categorias;
+import br.com.estoque.Model.Entidades.Categoria;
 import br.com.estoque.Util.FacesContextUtil;
 import java.io.Serializable;
 import java.util.List;
@@ -21,24 +21,24 @@ import javax.faces.context.FacesContext;
  *
  * @author Rogério Koglin
  */
-@ManagedBean(name = "mbCategorias")
+@ManagedBean(name = "mbCategoria")
 @SessionScoped
-public class MbCategorias implements Serializable {
+public class MbCategoria implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private Categorias categoria = new Categorias();
-    private List<Categorias> categorias;
+    private Categoria categoria = new Categoria();
+    private List<Categoria> categorias;
 
-    public MbCategorias() {
+    public MbCategoria() {
     }
 
-    private InterfaceDAO<Categorias> categoriasDAO() {
-        InterfaceDAO<Categorias> categoriasDAO = new HibernateDAO<Categorias>(Categorias.class, FacesContextUtil.getRequestSession());
+    private InterfaceDAO<Categoria> categoriasDAO() {
+        InterfaceDAO<Categoria> categoriasDAO = new HibernateDAO<Categoria>(Categoria.class, FacesContextUtil.getRequestSession());
         return categoriasDAO;
     }
 
     public String limpaCategoria() {
-        categoria = new Categorias();
+        categoria = new Categoria();
         return "/restrict/cadastrarCategoria.faces";
     }
 
@@ -72,20 +72,20 @@ public class MbCategorias implements Serializable {
     }
 //Gets e Seters
 
-    public List<Categorias> getCategorias() {
+    public List<Categoria> getCategorias() {
         categorias = categoriasDAO().getEntities();
         return categorias;
     }
 
-    public void setCategorias(List<Categorias> categorias) {
+    public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
     }
 
-    public Categorias getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categorias categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 }
