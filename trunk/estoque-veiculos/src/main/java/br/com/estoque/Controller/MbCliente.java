@@ -101,6 +101,7 @@ public class MbCliente implements Serializable {
     }
 
     public List<Cidade> getCidades() {
+        cidades = cidadesDAO().getEntities();
         return cidades;
     }
 
