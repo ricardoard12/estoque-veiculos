@@ -73,7 +73,7 @@
                                 </f:facet>
                                 <p:commandButton value="Editar" image="ui-icon ui-icon-pencil"
                                                  process="@this" update=":tbv1:formCliente" >
-                                    <f:setPropertyActionListener target="#{mbCliente.cliente.isCli_tipo}"
+                                    <f:setPropertyActionListener target="#{mbCliente.cliente}"
                                                                  value="#{cliente}"/>
                                 </p:commandButton>
                                 <p:commandButton value="Remover" action="#{mbCliente.deleteCliente}"
@@ -103,20 +103,20 @@
                             <h:inputText id="cliSenha" value="#{mbCliente.cliente.cli_senha}" required="true"
                                          requiredMessage="A Senha não pode ser vazio!"/>
                             <h:outputLabel>Administrador.:</h:outputLabel>
-                            <h:selectBooleanCheckbox value="false" /> 
+                            <h:selectBooleanCheckbox value="#{mbCliente.cliente.cli_senha}" /> 
                             <h:outputLabel>Cpf.: *</h:outputLabel>
                             <h:inputText id="cliCpf" value="#{mbCliente.cliente.cli_cpf}" required="true"
                                          requiredMessage="O CPF não pode ser vazio!"/>
                             <h:outputLabel>Estado.: *</h:outputLabel>
                             <p:selectOneMenu id="estado" value="#{cidadeEstadoView.estado}" style="width:165px">
-                                <p:ajax listener="#{cidadeEstadoView.onEstadoChange}" update="cidade" />
+                                <p:ajax listener="#{cidadeEstadoView.onEstadoChange}" update="" />
                                 <f:selectItem itemLabel="Selecione Estado >>" itemValue="" noSelectionOption="true" />
                                 <f:selectItems value="#{cidadeEstadoView.estados}" />
                             </p:selectOneMenu>
-                            <h:outputLabel>Cidade.: *</h:outputLabel>
+                            <h:outputLabel for="cidade">Cidade.: *</h:outputLabel>
                             <p:selectOneMenu id="cidade" value="#{mbCliente.cliente.cidade.cid_codigo}" style="width:165px">
                                 <f:selectItem itemLabel="Selecione Cidade >>" itemValue="" noSelectionOption="true" />
-                                <f:selectItems value="#{cidadeEstadoView.cidades}" />
+                                <f:selectItems value="#{bbCidade.cidades}" var="cidade" itemValue="#{cidade.cid_codigo}" itemLabel="#{cidade.cid_nome}" />
                             </p:selectOneMenu>                                              
                             <h:outputLabel>Endereço.: *</h:outputLabel>
                             <h:inputText id="cliEndereco" value="#{mbCliente.cliente.cli_endereco}" required="true"

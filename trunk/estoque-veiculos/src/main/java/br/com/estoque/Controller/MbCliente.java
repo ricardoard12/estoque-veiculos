@@ -47,7 +47,7 @@ public class MbCliente implements Serializable {
     public String limpaCliente() {
         cliente = new Cliente();
         cidade = new Cidade();
-        return "/restrict/cadastrarCliente.faces";
+        return editCliente();
     }
 
     public String editCliente() {
@@ -65,7 +65,8 @@ public class MbCliente implements Serializable {
     }
 
     private void insertCliente() {
-        cliente.setCidade(cidade);
+        this.cliente.setCidade(cidade);
+        System.out.println("$#$#$#$#cidade=" + this.cliente.getCidade().getCid_codigo());
         clientesDAO().save(cliente);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Cliente Gravado com SUCESSO!", ""));
@@ -81,7 +82,15 @@ public class MbCliente implements Serializable {
     public void deleteCliente() {
         clientesDAO().remove(cliente);
     }
+
 //Gets e Seters
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
     public List<Cliente> getClientes() {
         clientes = clientesDAO().getEntities();
@@ -92,12 +101,12 @@ public class MbCliente implements Serializable {
         this.clientes = clientes;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Cidade getCidade() {
+        return cidade;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
     }
 
     public List<Cidade> getCidades() {
@@ -108,13 +117,4 @@ public class MbCliente implements Serializable {
     public void setCidades(List<Cidade> cidades) {
         this.cidades = cidades;
     }
-
-    public Cidade getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(Cidade cidade) {
-        this.cidade = cidade;
-    }
-
 }
