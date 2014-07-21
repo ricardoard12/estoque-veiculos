@@ -30,7 +30,7 @@ public class MbFornecedor implements Serializable {
     private Fornecedor fornecedor = new Fornecedor();
     private List<Fornecedor> fornecedores;
     private Cidade cidade;
-
+    private List<Cidade> cidades;
     public MbFornecedor() {
         this.cidade = new Cidade();
     }
@@ -108,5 +108,14 @@ public class MbFornecedor implements Serializable {
     public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
     }
-}
 
+    public List<Cidade> getCidades() {
+        cidades = cidadesDAO().getEntities();
+        return cidades;
+    }
+
+    public void setCidades(List<Cidade> cidades) {
+        this.cidades = cidades;
+    }
+
+}

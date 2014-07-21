@@ -97,6 +97,7 @@ public class MbCidade implements Serializable {
     }
 
     public List<Estado> getEstados() {
+        estados = EstadosDAO().getEntities();
         return estados;
     }
 
