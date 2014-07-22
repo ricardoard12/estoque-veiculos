@@ -32,6 +32,7 @@ public class MbCliente implements Serializable {
     private List<Cidade> cidades;
 
     public MbCliente() {
+        this.cidade = new Cidade();
     }
 
     private InterfaceDAO<Cliente> clientesDAO() {
@@ -65,15 +66,12 @@ public class MbCliente implements Serializable {
     }
 
     private void insertCliente() {
-        this.cliente.setCidade(cidade);
-        System.out.println("$#$#$#$#cidade=" + this.cliente.getCidade().getCid_codigo());
         clientesDAO().save(cliente);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Cliente Gravado com SUCESSO!", ""));
     }
 
     private void updateCliente() {
-        cliente.setCidade(cidade);
         clientesDAO().update(cliente);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Cliente Atualizado com SUCESSO!", ""));
@@ -81,6 +79,7 @@ public class MbCliente implements Serializable {
 
     public void deleteCliente() {
         clientesDAO().remove(cliente);
+        limpaCliente();
     }
 
 //Gets e Seters

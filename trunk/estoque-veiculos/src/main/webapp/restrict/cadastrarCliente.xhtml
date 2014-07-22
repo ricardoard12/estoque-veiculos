@@ -57,7 +57,7 @@
                                 <f:facet name="header">
                                     <h:outputText value="Tipo"/>
                                 </f:facet>
-                                <h:outputText value="#{String.valueOf(cliente.isCli_tipo)}"/>
+                                <h:outputText value="#{cliente.cli_tipo}"/>
                             </p:column>
                             <p:column>
                                 <f:facet name="header">
@@ -103,7 +103,11 @@
                             <h:inputText id="cliSenha" value="#{mbCliente.cliente.cli_senha}" required="true"
                                          requiredMessage="A Senha não pode ser vazio!"/>
                             <h:outputLabel>Administrador.:</h:outputLabel>
-                            <h:selectBooleanCheckbox value="#{mbCliente.cliente.cli_senha}" /> 
+                            <p:selectOneMenu id="tipo" value="#{mbCliente.cliente.cli_tipo}" style="width:165px">
+                                <f:selectItem itemLabel="Selecione >>" itemValue="" noSelectionOption="true" />
+                                <f:selectItem  itemValue="Sim" itemLabel="Sim" />
+                                <f:selectItem  itemValue="Nao" itemLabel="Não" />
+                            </p:selectOneMenu> 
                             <h:outputLabel>Cpf.: *</h:outputLabel>
                             <h:inputText id="cliCpf" value="#{mbCliente.cliente.cli_cpf}" required="true"
                                          requiredMessage="O CPF não pode ser vazio!"/>

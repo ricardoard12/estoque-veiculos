@@ -46,7 +46,7 @@ public class MbFornecedor implements Serializable {
     public String limpaFornecedor() {
         fornecedor = new Fornecedor();
         cidade = new Cidade();
-        return "/restrict/cadastrarFornecedor.faces";
+        return editFornecedor();
     }
 
     public String editFornecedor() {
@@ -81,6 +81,7 @@ public class MbFornecedor implements Serializable {
     }
     public void deleteFornecedor() {
         fornecedoresDAO().remove(fornecedor);
+        limpaFornecedor();
     }
 
 //Gets e Seters

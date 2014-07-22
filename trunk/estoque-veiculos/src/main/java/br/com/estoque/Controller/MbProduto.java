@@ -35,6 +35,8 @@ public class MbProduto implements Serializable {
     private List<Fornecedor> fornecedores;
 
     public MbProduto() {
+        this.categoria = new Categoria();
+        this.fornecedor = new Fornecedor();
     }
 
     private InterfaceDAO<Produto> produtosDAO() {
@@ -56,7 +58,7 @@ public class MbProduto implements Serializable {
         produto = new Produto();
         categoria = new Categoria();
         fornecedor = new Fornecedor();
-        return "/restrict/cadastrarProduto.faces";
+        return editProduto();
     }
 
     public String editProduto() {
@@ -74,16 +76,12 @@ public class MbProduto implements Serializable {
     }
 
     private void insertProduto() {
-        produto.setCategoria(categoria);
-        produto.setFornecedor(fornecedor);
         produtosDAO().save(produto);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Produto Gravado com SUCESSO!", ""));
     }
 
     private void updateProduto() {
-        produto.setCategoria(categoria);
-        produto.setFornecedor(fornecedor);
         produtosDAO().update(produto);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Produto Atualizado com SUCESSO!", ""));
@@ -91,6 +89,7 @@ public class MbProduto implements Serializable {
 
     public void deleteProduto() {
         produtosDAO().remove(produto);
+        limpaProduto();
     }
 //Gets e Seters
 

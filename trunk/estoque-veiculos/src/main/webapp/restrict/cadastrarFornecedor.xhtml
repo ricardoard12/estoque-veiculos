@@ -64,7 +64,7 @@
                                 </f:facet>
                                 <h:outputText value="#{fornecedor.forCep}"/>
                             </p:column>
-                            
+
 
                             <!--Botões editar e excluir -->
                             <p:column>
@@ -105,16 +105,16 @@
                             <h:outputLabel>CNPJ.: *</h:outputLabel>
                             <h:inputText id="forCnpj" value="#{mbFornecedor.fornecedor.forCnpj}" required="true"
                                          requiredMessage="O CNPJ não pode ser vazio!"/>
-                                                        <h:outputLabel>Estado.: *</h:outputLabel>
+                            <h:outputLabel>Estado.: *</h:outputLabel>
                             <p:selectOneMenu id="estado" value="#{cidadeEstadoView.estado}" style="width:160px">
-                                <p:ajax listener="#{cidadeEstadoView.onEstadoChange}" update="cidade" />
+                                <p:ajax listener="#{cidadeEstadoView.onEstadoChange}" update="" />
                                 <f:selectItem itemLabel="Selecione Estado" itemValue="" noSelectionOption="true" />
                                 <f:selectItems value="#{cidadeEstadoView.estados}" />
                             </p:selectOneMenu>
                             <h:outputLabel>Cidade.: *</h:outputLabel>
                             <p:selectOneMenu id="cidade" value="#{mbFornecedor.cidade.cid_codigo}" style="width:160px">
                                 <f:selectItem itemLabel="Selecione Cidade" itemValue="" noSelectionOption="true" />
-                                <f:selectItems value="#{cidadeEstadoView.cidades}" />
+                                <f:selectItems var="cidade" value="#{bbCidade.cidades}" itemLabel="#{cidade.cid_nome}" itemValue="#{cidade.cid_codigo}"/>
                             </p:selectOneMenu>  
                             <h:outputLabel>CEP.: *</h:outputLabel>
                             <h:inputText id="forCep" value="#{mbFornecedor.fornecedor.forCep}" required="true"
