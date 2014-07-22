@@ -39,7 +39,7 @@ public class MbCategoria implements Serializable {
 
     public String limpaCategoria() {
         categoria = new Categoria();
-        return "/restrict/cadastrarCategoria.faces";
+        return editCategoria();
     }
 
     public String editCategoria() {
@@ -69,6 +69,7 @@ public class MbCategoria implements Serializable {
     }
     public void deleteCategoria() {
         categoriasDAO().remove(categoria);
+        limpaCategoria();
     }
 //Gets e Seters
 
