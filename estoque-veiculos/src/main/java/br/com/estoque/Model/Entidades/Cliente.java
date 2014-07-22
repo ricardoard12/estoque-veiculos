@@ -32,8 +32,8 @@ public class Cliente implements Serializable {
     @GeneratedValue
     @Column(name = "cli_codigo", nullable = false)
     private Integer cli_codigo;
-    @Column(name = "cli_tipo", nullable = true)
-    private Boolean cli_tipo;
+    @Column(name = "cli_tipo", nullable = false, length = 1)
+    private String cli_tipo;
     @Column(name = "cli_cpf", nullable = false, length = 11, unique = true)
     private String cli_cpf;
     @Column(name = "cli_nome", nullable = false, length = 45)
@@ -76,11 +76,11 @@ public class Cliente implements Serializable {
         this.cli_senha = cli_senha;
     }
 
-    public Boolean isCli_tipo() {
+    public String getCli_tipo() {
         return cli_tipo;
     }
 
-    public void setCli_tipo(Boolean cli_tipo) {
+    public void setCli_tipo(String cli_tipo) {
         this.cli_tipo = cli_tipo;
     }
 
